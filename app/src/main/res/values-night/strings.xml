@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TMM</string>
+    <string name="marvel_text">THE\nMARVELOUS\nMARVEL</string>
+    <string name="background_gif">Background gif</string>
+    <string name="app_logo">logo</string>
+</resources>

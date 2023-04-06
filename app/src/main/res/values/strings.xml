@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TMM</string>
+    <string name="marvel_text">THE\nMARVELOUS\nMARVEL</string>
+    <string name="background_gif">Background gif</string>
+    <string name="app_logo">logo</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_favourites">Favourites</string>
+</resources>
