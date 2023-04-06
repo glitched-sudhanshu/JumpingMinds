@@ -1,11 +1,10 @@
 package com.example.tmm.views.adapters
 
-import android.R
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tmm.databinding.CarouselItemBinding
-import com.example.tmm.models.CarouselItem
+import com.example.tmm.domain.model.CarouselItem
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 
@@ -26,8 +25,8 @@ class SliderAdapter(private val carouselItem: Array<CarouselItem>, private val f
 
     inner class Holder(private val view: CarouselItemBinding) : ViewHolder(view.root) {
         fun bind(item: CarouselItem) {
-            view.citem = item
             view.carouselImage.setImageResource(item.image)
+            view.textView.setText(item.text)
         }
     }
 }
