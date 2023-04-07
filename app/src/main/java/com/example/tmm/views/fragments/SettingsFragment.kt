@@ -1,17 +1,17 @@
 package com.example.tmm.views.fragments
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.tmm.databinding.FragmentDashboardBinding
+import com.example.tmm.databinding.FragmentSettingsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class DashboardFragment : Fragment() {
+@AndroidEntryPoint
+class SettingsFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding : FragmentSettingsBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,8 +19,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return _binding!!.root
     }
 

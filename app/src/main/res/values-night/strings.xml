@@ -4,4 +4,12 @@
     <string name="marvel_text">THE\nMARVELOUS\nMARVEL</string>
     <string name="background_gif">Background gif</string>
     <string name="app_logo">logo</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="get_characters">Get your favourite MARVEL characters</string>
+    <string name="know_writers">Know the writers</string>
+    <string name="heroes">THE HEROES</string>
+    <string name="creators">THE CREATORS</string>
+    <string name="universe">THE UNIVERSE</string>
 </resources>

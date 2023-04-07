@@ -11,7 +11,9 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.example.tmm.R
 import com.example.tmm.databinding.ActivitySplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     private var binding: ActivitySplashBinding? = null

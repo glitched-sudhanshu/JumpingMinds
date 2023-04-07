@@ -1,14 +1,22 @@
 package com.example.tmm.views.activities
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.util.Log
+import android.view.View
+import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.tmm.R
 import com.example.tmm.databinding.ActivityHomeBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
 
-class HomeActivity : AppCompatActivity() {
+
+@AndroidEntryPoint
+class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var _binding: ActivityHomeBinding
 
@@ -17,19 +25,23 @@ class HomeActivity : AppCompatActivity() {
 
         _binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(_binding.root)
-
         setupNavController()
     }
+
 
     private fun setupNavController()
     {
         val navView: BottomNavigationView = _binding.navView
-
+        navView.menu.getItem(2).isEnabled = false
         val navController = findNavController(R.id.nav_host_fragment_activity_home)
-        //No action bar in this app
-//        val appBarConfiguration = AppBarConfiguration(setOf(
-//            R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
-//        setupActionBarWithNavController(navController)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onClick(view: View?) {
+        when(view!!.id)
+        {
+
+        }
+
     }
 }
