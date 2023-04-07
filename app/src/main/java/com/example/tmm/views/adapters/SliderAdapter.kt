@@ -9,6 +9,14 @@ import com.smarteist.autoimageslider.SliderViewAdapter
 
 
 class SliderAdapter(private val carouselItem: Array<CarouselItem>, private val fragment : Fragment) : SliderViewAdapter<SliderAdapter.Holder>() {
+
+    inner class Holder(private val view: CarouselItemBinding) : ViewHolder(view.root) {
+        fun bind(item: CarouselItem) {
+            view.carouselImage.setImageResource(item.image)
+            view.textView.setText(item.text)
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup): Holder {
         val binding = CarouselItemBinding.inflate(LayoutInflater.from(fragment.activity), parent, false)
         return Holder(binding)
@@ -23,10 +31,5 @@ class SliderAdapter(private val carouselItem: Array<CarouselItem>, private val f
         return carouselItem.size
     }
 
-    inner class Holder(private val view: CarouselItemBinding) : ViewHolder(view.root) {
-        fun bind(item: CarouselItem) {
-            view.carouselImage.setImageResource(item.image)
-            view.textView.setText(item.text)
-        }
-    }
+
 }

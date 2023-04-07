@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="offWhite">#CABFBF</color>
     <color name="red_200">#9FBA3838</color>
+    <color name="red_500">#F16868</color>
     <color name="red_700">#F7FF0000</color>
     <color name="bg_grey_layer">#8B000000</color>
     <color name="grey">#D3323232</color>

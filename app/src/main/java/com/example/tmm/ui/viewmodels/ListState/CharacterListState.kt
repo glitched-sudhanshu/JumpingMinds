@@ -1,4 +1,4 @@
-package com.example.tmm.ui.viewmodels.CharactersList
+package com.example.tmm.ui.viewmodels.ListState
 
 import com.example.tmm.domain.model.Character
 

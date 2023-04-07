@@ -8,9 +8,12 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/container"
+        android:background="@drawable/container_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/container_bg">
+        >
+
+
 
         <fragment
             android:id="@+id/nav_host_fragment_activity_home"
@@ -41,19 +44,49 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/fab"
+            android:id="@+id/fabMain"
             android:src="@drawable/ic_add"
             app:layout_anchor="@id/bottomAppBar"
-            android:backgroundTint="@color/offWhite"
+            android:backgroundTint="@color/red_500"
             app:borderWidth="0dp"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red_500"
+            android:src="@drawable/ic_add"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            android:layout_gravity="top|center_horizontal"
+            app:layout_anchorGravity="top|center"
+            app:layout_anchor="@id/fabMain"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red_500"
+            android:src="@drawable/ic_add"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            android:layout_gravity="top|center_horizontal"
+            app:layout_anchorGravity="top|center"
+            app:layout_anchor="@id/fab1"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red_500"
+            android:src="@drawable/ic_add"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            android:layout_gravity="top|center_horizontal"
+            app:layout_anchorGravity="top|center"
+            app:layout_anchor="@id/fab2"/>
 
 
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</layout>
+
+    </layout>

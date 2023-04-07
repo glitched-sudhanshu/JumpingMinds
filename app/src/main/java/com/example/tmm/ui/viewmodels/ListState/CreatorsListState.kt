@@ -1,4 +1,4 @@
-package com.example.tmm.ui.viewmodels.CreatorsList
+package com.example.tmm.ui.viewmodels.ListState
 
 import com.example.tmm.domain.model.Creator
 
