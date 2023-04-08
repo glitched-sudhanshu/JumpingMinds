@@ -93,15 +93,15 @@ class HomeFragment : Fragment() {
                 viewModel.marvelCreatorsValue.collect{
                     when{
                         it.isLoading->{
-                            _binding!!.pBarCreators.visibility = View.VISIBLE
+//                            _binding!!.pBarCreators.visibility = View.VISIBLE
                         }
                         it.error.isNotBlank()->{
-                            _binding!!.pBarCreators.visibility = View.GONE
+//                            _binding!!.pBarCreators.visibility = View.GONE
                             flagForCreatorList = 0
                             Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                         }
                         it.creatorList.isNotEmpty()->{
-                            _binding!!.pBarCreators.visibility = View.GONE
+//                            _binding!!.pBarCreators.visibility = View.GONE
                             flagForCreatorList = 0
                             creatorListAdapter.setData(it.creatorList as ArrayList<Creator>)
                         }
@@ -139,15 +139,16 @@ class HomeFragment : Fragment() {
                 viewModel.marvelCharactersValue.collect{
                     when{
                         it.isLoading->{
-                            _binding!!.pBarCharacters.visibility = View.VISIBLE
+//                            _binding!!.pBarCharacters.visibility = View.VISIBLE
                         }
                         it.error.isNotBlank()->{
-                            _binding!!.pBarCharacters.visibility = View.GONE
+//                            _binding!!.pBarCharacters.visibility = View.GONE
                             flagForCharacterList = 0
                             Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                         }
                         it.characterList.isNotEmpty()->{
-                            _binding!!.pBarCharacters.visibility = View.GONE
+                            //TODO: upon searching it is crashing because of this
+//                            _binding!!.pBarCharacters.visibility = View.GONE
                             flagForCharacterList = 0
                             characterListAdapter.setData(it.characterList as ArrayList<Character>)
                         }

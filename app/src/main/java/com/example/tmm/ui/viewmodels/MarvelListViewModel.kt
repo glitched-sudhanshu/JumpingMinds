@@ -18,10 +18,15 @@ import javax.inject.Inject
 @HiltViewModel
 class MarvelListViewModel @Inject constructor(
     private val charactersUseCase: CharactersUseCase,
+    private val searchCharacterUseCase: SearchCharacterUseCase,
     private val creatorsUseCase: CreatorUseCase,
+    private val searchCreatorUseCase: SearchCreatorUseCase,
     private val comicUseCase: ComicUseCase,
+    private val searchComicUseCase: SearchComicUseCase,
     private val eventUseCase: EventUseCase,
-    private val seriesUseCase: SeriesUseCase
+    private val searchEventUseCase: SearchEventUseCase,
+    private val seriesUseCase: SeriesUseCase,
+    private val searchSeriesUseCase: SearchSeriesUseCase
 ) : ViewModel(){
     private val _marvelCharactersValue = MutableStateFlow(CharacterListState())
     var marvelCharactersValue : StateFlow<CharacterListState> = _marvelCharactersValue
@@ -54,6 +59,24 @@ class MarvelListViewModel @Inject constructor(
         }
     }
 
+    fun getAllSearchedCharacters(search: String) = viewModelScope.launch(Dispatchers.IO) {
+        searchCharacterUseCase.invoke(search = search).collect {
+            when (it) {
+                is Response.Success -> {
+                    _marvelCharactersValue.value =
+                        CharacterListState(characterList = it.data ?: emptyList())
+                }
+                is Response.Loading -> {
+                    _marvelCharactersValue.value = CharacterListState(isLoading = true)
+                }
+                is Response.Error -> {
+                    _marvelCharactersValue.value =
+                        CharacterListState(error = it.message ?: "An unexpected error")
+                }
+            }
+        }
+    }
+
     fun getAllCreatorsData(offset : Int) = viewModelScope.launch(Dispatchers.IO) {
         creatorsUseCase(offset = offset).collect{
             when(it){
@@ -65,6 +88,41 @@ class MarvelListViewModel @Inject constructor(
                 }
                 is Response.Error -> {
                     _marvelCreatorsValue.value = CreatorsListState(error = it.message?:"An unexpected error")
+                }
+            }
+        }
+    }
+
+    fun getAllSearchedCreatorsData(search: String) = viewModelScope.launch(Dispatchers.IO) {
+        searchCreatorUseCase.invoke(search = search).collect {
+            when (it) {
+                is Response.Success -> {
+                    _marvelCreatorsValue.value =
+                        CreatorsListState(creatorList = it.data ?: emptyList())
+                }
+                is Response.Loading -> {
+                    _marvelCreatorsValue.value = CreatorsListState(isLoading = true)
+                }
+                is Response.Error -> {
+                    _marvelCreatorsValue.value =
+                        CreatorsListState(error = it.message ?: "An unexpected error")
+                }
+            }
+        }
+    }
+
+    fun getAllSearchedComics(search: String) = viewModelScope.launch(Dispatchers.IO) {
+        searchComicUseCase.invoke(search = search).collect {
+            when (it) {
+                is Response.Success -> {
+                    _marvelComicValue.value = ComicListState(comicList = it.data ?: emptyList())
+                }
+                is Response.Loading -> {
+                    _marvelComicValue.value = ComicListState(isLoading = true)
+                }
+                is Response.Error -> {
+                    _marvelComicValue.value =
+                        ComicListState(error = it.message ?: "An unexpected error")
                 }
             }
         }
@@ -102,6 +160,23 @@ class MarvelListViewModel @Inject constructor(
         }
     }
 
+    fun getAllSearchedEvents(search: String) = viewModelScope.launch(Dispatchers.IO) {
+        searchEventUseCase.invoke(search = search).collect {
+            when (it) {
+                is Response.Success -> {
+                    _marvelEventValue.value = EventListState(eventList = it.data ?: emptyList())
+                }
+                is Response.Loading -> {
+                    _marvelEventValue.value = EventListState(isLoading = true)
+                }
+                is Response.Error -> {
+                    _marvelEventValue.value =
+                        EventListState(error = it.message ?: "An unexpected error")
+                }
+            }
+        }
+    }
+
     fun getAllSeriesData(offset : Int) = viewModelScope.launch(Dispatchers.IO) {
         seriesUseCase(offset = offset).collect{
             when(it){
@@ -116,6 +191,27 @@ class MarvelListViewModel @Inject constructor(
                 }
                 is Response.Error -> {
                     _marvelSeriesValue.value = SeriesListState(error = it.message?:"An unexpected error")
+                }
+            }
+        }
+    }
+
+    fun getAllSearchedSeries(search: String) = viewModelScope.launch(Dispatchers.IO) {
+        searchSeriesUseCase.invoke(search = search).collect {
+            when (it) {
+                is Response.Success -> {
+                    _marvelSeriesValue.value = SeriesListState(seriesList = it.data ?: emptyList())
+                    for (item in it.data!!) {
+                        Log.d(TAG,
+                            "getAllData: ${item.title}->${item.noOfCharacters} & ${item.description}")
+                    }
+                }
+                is Response.Loading -> {
+                    _marvelSeriesValue.value = SeriesListState(isLoading = true)
+                }
+                is Response.Error -> {
+                    _marvelSeriesValue.value =
+                        SeriesListState(error = it.message ?: "An unexpected error")
                 }
             }
         }
