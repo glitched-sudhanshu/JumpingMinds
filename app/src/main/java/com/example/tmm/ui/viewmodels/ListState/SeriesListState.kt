@@ -5,6 +5,6 @@ import com.example.tmm.domain.model.MarvelSeries
 
 data class SeriesListState(
     val isLoading: Boolean = false,
-    val seriesList: List<MarvelSeries> = emptyList(),
+    val list: List<MarvelSeries> = emptyList(),
     val error: String = "",
 )

@@ -11,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -47,7 +46,7 @@ class MarvelListViewModel @Inject constructor(
         charactersUseCase(offset = offset).collect {
             when (it) {
                 is Response.Success -> {
-                    _marvelCharactersValue.value = CharacterListState(characterList = it.data?: emptyList())
+                    _marvelCharactersValue.value = CharacterListState(list = it.data?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelCharactersValue.value = CharacterListState(isLoading = true)
@@ -64,7 +63,7 @@ class MarvelListViewModel @Inject constructor(
             when (it) {
                 is Response.Success -> {
                     _marvelCharactersValue.value =
-                        CharacterListState(characterList = it.data ?: emptyList())
+                        CharacterListState(list = it.data ?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelCharactersValue.value = CharacterListState(isLoading = true)
@@ -81,7 +80,7 @@ class MarvelListViewModel @Inject constructor(
         creatorsUseCase(offset = offset).collect{
             when(it){
                 is Response.Success -> {
-                    _marvelCreatorsValue.value = CreatorsListState(creatorList = it.data?: emptyList())
+                    _marvelCreatorsValue.value = CreatorsListState(list = it.data?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelCreatorsValue.value = CreatorsListState(isLoading = true)
@@ -98,7 +97,7 @@ class MarvelListViewModel @Inject constructor(
             when (it) {
                 is Response.Success -> {
                     _marvelCreatorsValue.value =
-                        CreatorsListState(creatorList = it.data ?: emptyList())
+                        CreatorsListState(list = it.data ?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelCreatorsValue.value = CreatorsListState(isLoading = true)
@@ -115,7 +114,7 @@ class MarvelListViewModel @Inject constructor(
         searchComicUseCase.invoke(search = search).collect {
             when (it) {
                 is Response.Success -> {
-                    _marvelComicValue.value = ComicListState(comicList = it.data ?: emptyList())
+                    _marvelComicValue.value = ComicListState(list = it.data ?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelComicValue.value = ComicListState(isLoading = true)
@@ -132,7 +131,7 @@ class MarvelListViewModel @Inject constructor(
         comicUseCase(offset = offset).collect{
             when(it){
                 is Response.Success ->{
-                    _marvelComicValue.value = ComicListState(comicList = it.data?: emptyList())
+                    _marvelComicValue.value = ComicListState(list = it.data?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelComicValue.value = ComicListState(isLoading = true)
@@ -148,7 +147,7 @@ class MarvelListViewModel @Inject constructor(
         eventUseCase(offset = offset).collect{
             when(it){
                 is Response.Success ->{
-                    _marvelEventValue.value = EventListState(eventList = it.data?: emptyList())
+                    _marvelEventValue.value = EventListState(list = it.data?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelEventValue.value = EventListState(isLoading = true)
@@ -164,7 +163,7 @@ class MarvelListViewModel @Inject constructor(
         searchEventUseCase.invoke(search = search).collect {
             when (it) {
                 is Response.Success -> {
-                    _marvelEventValue.value = EventListState(eventList = it.data ?: emptyList())
+                    _marvelEventValue.value = EventListState(list = it.data ?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelEventValue.value = EventListState(isLoading = true)
@@ -181,7 +180,7 @@ class MarvelListViewModel @Inject constructor(
         seriesUseCase(offset = offset).collect{
             when(it){
                 is Response.Success ->{
-                    _marvelSeriesValue.value = SeriesListState(seriesList = it.data?: emptyList())
+                    _marvelSeriesValue.value = SeriesListState(list = it.data?: emptyList())
                     for (item in it.data!!){
                         Log.d(TAG, "getAllData: ${item.title}->${item.noOfCharacters} & ${item.description}")
                     }
@@ -200,7 +199,7 @@ class MarvelListViewModel @Inject constructor(
         searchSeriesUseCase.invoke(search = search).collect {
             when (it) {
                 is Response.Success -> {
-                    _marvelSeriesValue.value = SeriesListState(seriesList = it.data ?: emptyList())
+                    _marvelSeriesValue.value = SeriesListState(list = it.data ?: emptyList())
                     for (item in it.data!!) {
                         Log.d(TAG,
                             "getAllData: ${item.title}->${item.noOfCharacters} & ${item.description}")

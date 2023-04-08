@@ -9,7 +9,13 @@ import com.bumptech.glide.Glide
 import com.example.tmm.databinding.SearchMenuItemBinding
 import com.example.tmm.domain.model.ListViewItem
 
-class SearchListAdapter(private val context : Context, private val listItems : Array<ListViewItem>) :RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
+class SearchListAdapter(private val context : Context, private val listItems : Array<ListViewItem>, onSearchByItemClickListener: OnSearchByItemClickListener) :RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
+
+    private var onSearchByItemClickListener: OnSearchByItemClickListener? = null
+
+    init {
+        this.onSearchByItemClickListener = onSearchByItemClickListener
+    }
 
     inner class ViewHolder(binding : SearchMenuItemBinding) : RecyclerView.ViewHolder(binding.root){
         val image = binding.imgSearchBy
@@ -29,11 +35,15 @@ class SearchListAdapter(private val context : Context, private val listItems : A
             .load(item.image)
             .into(holder.image)
         holder.searchBy.setOnClickListener {
-            Toast.makeText(context, "Search by ${item.text}", Toast.LENGTH_SHORT).show()
+            onSearchByItemClickListener?.onSearchByItemClick(position)
         }
     }
 
     override fun getItemCount(): Int {
         return listItems.size
+    }
+
+    interface OnSearchByItemClickListener {
+        fun onSearchByItemClick(position: Int)
     }
 }

@@ -100,10 +100,10 @@ class HomeFragment : Fragment() {
                             flagForCreatorList = 0
                             Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                         }
-                        it.creatorList.isNotEmpty()->{
+                        it.list.isNotEmpty()->{
 //                            _binding!!.pBarCreators.visibility = View.GONE
                             flagForCreatorList = 0
-                            creatorListAdapter.setData(it.creatorList as ArrayList<Creator>)
+                            creatorListAdapter.setData(it.list as ArrayList<Creator>)
                         }
                     }
                     delay(1000)
@@ -146,11 +146,11 @@ class HomeFragment : Fragment() {
                             flagForCharacterList = 0
                             Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                         }
-                        it.characterList.isNotEmpty()->{
+                        it.list.isNotEmpty()->{
                             //TODO: upon searching it is crashing because of this
 //                            _binding!!.pBarCharacters.visibility = View.GONE
                             flagForCharacterList = 0
-                            characterListAdapter.setData(it.characterList as ArrayList<Character>)
+                            characterListAdapter.setData(it.list as ArrayList<Character>)
                         }
                     }
                     delay(1000)

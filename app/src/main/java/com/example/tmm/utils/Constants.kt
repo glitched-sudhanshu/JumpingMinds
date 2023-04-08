@@ -20,4 +20,17 @@ object Constants {
         val md = MessageDigest.getInstance("MD5")
         return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32,'0')
     }
+
+
+//    const val SEARCH_FOR_CHARACTERS = 100
+//    const val SEARCH_FOR_CREATORS = 101
+//    const val SEARCH_FOR_COMICS = 102
+//    const val SEARCH_FOR_EVENTS = 103
+//    const val SEARCH_FOR_SERIES = 104
+
+    const val SEARCH_FOR_CHARACTERS = "Search characters by Name"
+    const val SEARCH_FOR_CREATORS = "Search creators by Name"
+    const val SEARCH_FOR_COMICS = "Search comics by Title"
+    const val SEARCH_FOR_EVENTS = "Search Events by Title"
+    const val SEARCH_FOR_SERIES = "Search series by Title"
 }
