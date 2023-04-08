@@ -8,11 +8,9 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/container"
-        android:background="@drawable/container_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-
+        android:background="@drawable/container_bg">
 
 
         <fragment
@@ -20,16 +18,19 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="?attr/actionBarSize"
             app:defaultNavHost="true"
+            app:layout_anchor="@id/bottomAppBar"
             app:navGraph="@navigation/mobile_navigation" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bottomAppBar"
-            android:backgroundTint="@color/black"
             android:layout_gravity="bottom"
+            android:backgroundTint="@color/black"
             app:fabCradleRoundedCornerRadius="15dp">
+
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/nav_view"
                 android:layout_width="match_parent"
@@ -41,38 +42,44 @@
                 app:menu="@menu/bottom_nav_menu" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/fabMain"
-            android:src="@drawable/ic_add"
-            app:layout_anchor="@id/bottomAppBar"
-            android:backgroundTint="@color/red_500"
-            app:borderWidth="0dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab1"
+            android:id="@+id/fabMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/red_500"
             android:src="@drawable/ic_add"
             app:borderWidth="0dp"
-            app:fabSize="mini"
-            android:layout_gravity="top|center_horizontal"
-            app:layout_anchorGravity="top|center"
-            app:layout_anchor="@id/fabMain"/>
+            app:layout_anchor="@id/bottomAppBar" />
+
+
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
             android:backgroundTint="@color/red_500"
             android:src="@drawable/ic_add"
             app:borderWidth="0dp"
             app:fabSize="mini"
-            android:layout_gravity="top|center_horizontal"
+            app:layout_anchor="@id/fabMain"
             app:layout_anchorGravity="top|center"
-            app:layout_anchor="@id/fab1"/>
+            android:visibility="gone"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|end"
+            android:backgroundTint="@color/red_500"
+            android:src="@drawable/ic_add"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:layout_anchor="@id/fabMain"
+            app:layout_anchorGravity="right|center_vertical|end"
+            android:visibility="gone"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab3"
@@ -82,11 +89,12 @@
             android:src="@drawable/ic_add"
             app:borderWidth="0dp"
             app:fabSize="mini"
-            android:layout_gravity="top|center_horizontal"
-            app:layout_anchorGravity="top|center"
-            app:layout_anchor="@id/fab2"/>
+            app:layout_anchor="@id/fabMain"
+            app:layout_anchorGravity="left|center_vertical|start"
+            android:layout_gravity="center_horizontal|start"
+            android:visibility="gone"/>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    </layout>
+</layout>

@@ -5,14 +5,20 @@
       <map>
         <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/bnv_tab_item.xml" value="0.1" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/container_bg.xml" value="0.1" />
-        <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/activity_home.xml" value="0.2" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/fab_bg.xml" value="0.2365" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/ic_reset.xml" value="0.2595" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/rv_item_ripple.xml" value="0.219" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/search_view_bg.xml" value="0.1095" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/activity_home.xml" value="0.18803418803418803" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/activity_splash.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/carousel_item.xml" value="0.1" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_dashboard.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_home.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_search.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_settings.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/marvel_item.xml" value="0.20854700854700856" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/search_menu_item.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1765" />
       </map>

@@ -7,6 +7,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/clItem"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginStart="5dp"
@@ -19,9 +20,11 @@
         app:cardBackgroundColor="@color/bg_grey_layer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clItem"
+
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:foreground="@drawable/rv_item_ripple">
 
             <ImageView
                 android:id="@+id/characterImg"
