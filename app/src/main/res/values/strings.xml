@@ -13,4 +13,9 @@
     <string name="heroes">THE HEROES</string>
     <string name="creators">THE CREATORS</string>
     <string name="universe">THE UNIVERSE</string>
+    <string name="search_series">Search series by Title</string>
+    <string name="search_events">Search Events by Title</string>
+    <string name="search_comics">Search comics by Title</string>
+    <string name="search_creators">Search creators by Name</string>
+    <string name="search_characters">Search characters by Name</string>
 </resources>

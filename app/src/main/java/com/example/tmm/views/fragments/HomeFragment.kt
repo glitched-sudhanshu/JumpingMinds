@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tmm.R
 import com.example.tmm.databinding.FragmentHomeBinding
-import com.example.tmm.domain.model.CarouselItem
+import com.example.tmm.domain.model.ListViewItem
 import com.example.tmm.domain.model.Character
 import com.example.tmm.domain.model.Creator
 import com.example.tmm.ui.viewmodels.MarvelListViewModel
@@ -161,14 +161,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupSliderView() {
-        val carouselItems = arrayOf(CarouselItem(R.string.get_characters,
+        val listViewItems = arrayOf(ListViewItem(R.string.get_characters,
             R.drawable.c_one),
-            CarouselItem(R.string.know_writers, R.drawable.c_four),
-            CarouselItem(R.string.heroes, R.drawable.c_two),
-            CarouselItem(R.string.universe, R.drawable.c_three),
-            CarouselItem(R.string.creators, R.drawable.c_five))
+            ListViewItem(R.string.know_writers, R.drawable.c_four),
+            ListViewItem(R.string.heroes, R.drawable.c_two),
+            ListViewItem(R.string.universe, R.drawable.c_three),
+            ListViewItem(R.string.creators, R.drawable.c_five))
         val sliderView = _binding!!.carousel
-        val sliderAdapter = SliderAdapter(carouselItems, this)
+        val sliderAdapter = SliderAdapter(listViewItems, this)
 
         sliderView.setSliderAdapter(sliderAdapter)
         sliderView.setIndicatorAnimation(IndicatorAnimationType.THIN_WORM)

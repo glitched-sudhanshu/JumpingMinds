@@ -10,8 +10,12 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tmm.R
 import com.example.tmm.databinding.FragmentSearchBinding
+import com.example.tmm.domain.model.ListViewItem
 import com.example.tmm.ui.viewmodels.MarvelListViewModel
+import com.example.tmm.views.adapters.SearchListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +26,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private var _binding: FragmentSearchBinding? = null
     private lateinit var searchView: SearchView
-    private lateinit var searchTerm : String
-    private val viewModel : MarvelListViewModel by activityViewModels()
+    private lateinit var searchTerm: String
+    private val viewModel: MarvelListViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +43,25 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         super.onViewCreated(view, savedInstanceState)
 
         searchView = _binding!!.searchView
+        setupSearchByRecyclerView()
         getSearchResults()
+    }
+
+    private fun setupSearchByRecyclerView() {
+        val listItems = arrayOf(
+            ListViewItem(R.string.search_creators, R.drawable.c_four),
+            ListViewItem(R.string.search_comics, R.drawable.c_two),
+            ListViewItem(R.string.search_events, R.drawable.c_three),
+            ListViewItem(R.string.search_series, R.drawable.c_five),
+            ListViewItem(R.string.search_characters,
+                R.drawable.c_one),
+        )
+        val rvSearchBy = _binding!!.rvSearchMenu
+        val layoutManger =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val adapter = SearchListAdapter(requireContext(), listItems)
+        rvSearchBy.layoutManager = layoutManger
+        rvSearchBy.adapter = adapter
     }
 
     private fun getSearchResults() {
@@ -52,11 +75,11 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(query!=null){
+        if (query != null) {
             searchTerm = query
         }
 
-        if(searchTerm.isNotEmpty()){
+        if (searchTerm.isNotEmpty()) {
             search()
         }
         return true
@@ -65,19 +88,19 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun search() {
         viewModel.getAllSearchedSeries(searchTerm)
         CoroutineScope(Dispatchers.Main).launch {
-            viewModel.marvelSeriesValue.collect{
-                when{
-                    it.isLoading->{
+            viewModel.marvelSeriesValue.collect {
+                when {
+                    it.isLoading -> {
 //                        _binding!!.pBarCharacters.visibility = View.VISIBLE
                     }
-                    it.error.isNotBlank()->{
+                    it.error.isNotBlank() -> {
 //                        _binding!!.pBarCharacters.visibility = View.GONE
                         Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                     }
-                    it.seriesList.isNotEmpty()->{
+                    it.seriesList.isNotEmpty() -> {
 //                        _binding!!.pBarCharacters.visibility = View.GONE
 //                        characterListAdapter.setData(it.characterList as ArrayList<Character>)
-                        for(item in it.seriesList){
+                        for (item in it.seriesList) {
                             Log.d(TAG, "search: ${item.title}")
                         }
                     }
@@ -87,11 +110,11 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        if(newText!=null){
+        if (newText != null) {
             searchTerm = newText
         }
 
-        if(searchTerm.isNotEmpty()){
+        if (searchTerm.isNotEmpty()) {
             search()
         }
         return true

@@ -30,7 +30,6 @@ class CharactersListAdapter(private val context : Context, var itemList : ArrayL
         val item = itemList[position]
         holder.characterName.text = item.name
         val imageUrl = "${item.thumbnail.replace("http", "https")}/portrait_xlarge.${item.thumbnailExt}"
-        Log.d(TAG, "thumbnail: $imageUrl")
         Glide.with(context)
             .load(imageUrl)
             .into(holder.characterImage)
