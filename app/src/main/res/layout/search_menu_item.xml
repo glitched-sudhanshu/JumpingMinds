@@ -14,12 +14,15 @@
             app:contentPadding="10dp"
             app:cardCornerRadius="2dp"
             android:backgroundTint="@android:color/transparent"
+
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clSearchBy"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:foreground="@drawable/rv_item_ripple">
 
                 <ImageView
                     android:id="@+id/imgSearchBy"

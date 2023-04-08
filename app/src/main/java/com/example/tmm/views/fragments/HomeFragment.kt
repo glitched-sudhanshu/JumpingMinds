@@ -16,8 +16,7 @@ import com.example.tmm.domain.model.ListViewItem
 import com.example.tmm.domain.model.Character
 import com.example.tmm.domain.model.Creator
 import com.example.tmm.ui.viewmodels.MarvelListViewModel
-import com.example.tmm.views.adapters.CharactersListAdapter
-import com.example.tmm.views.adapters.CreatorsListAdapter
+import com.example.tmm.views.adapters.MarvelListAdapter
 import com.example.tmm.views.adapters.SliderAdapter
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -36,13 +35,14 @@ class HomeFragment : Fragment() {
     var flagForCharacterList = 3
     var paginatedValueForCharacterList = 0;
     private lateinit var rvCharacters : RecyclerView
-    private lateinit var characterListAdapter : CharactersListAdapter
     private lateinit var layoutManagerForCharacterList: LinearLayoutManager
+
+    private lateinit var characterAdapter: MarvelListAdapter<Character>
+    private lateinit var creatorAdapter: MarvelListAdapter<Creator>
 
     var flagForCreatorList = 3
     var paginatedValueForCreatorList = 0;
     private lateinit var rvCreator : RecyclerView
-    private lateinit var creatorListAdapter : CreatorsListAdapter
     private lateinit var layoutManagerForCreatorList: LinearLayoutManager
 
     private val viewModel : MarvelListViewModel by activityViewModels()
@@ -70,9 +70,9 @@ class HomeFragment : Fragment() {
     private fun setupCreatorRecyclerView() {
         rvCreator = _binding!!.rvCreators
         layoutManagerForCreatorList = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        creatorListAdapter = CreatorsListAdapter(requireContext(), ArrayList())
+        creatorAdapter = MarvelListAdapter(context = requireContext(), itemList =  ArrayList(), isSearch = false)
         rvCreator.layoutManager = layoutManagerForCreatorList
-        rvCreator.adapter = creatorListAdapter
+        rvCreator.adapter = creatorAdapter
         viewModel.getAllCreatorsData(paginatedValueForCreatorList)
         callCreatorApi()
         rvCreator.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -103,7 +103,7 @@ class HomeFragment : Fragment() {
                         it.list.isNotEmpty()->{
 //                            _binding!!.pBarCreators.visibility = View.GONE
                             flagForCreatorList = 0
-                            creatorListAdapter.setData(it.list as ArrayList<Creator>)
+                            creatorAdapter.setData(it.list as ArrayList<Creator>)
                         }
                     }
                     delay(1000)
@@ -116,9 +116,9 @@ class HomeFragment : Fragment() {
     private fun setupCharacterRecyclerView() {
         rvCharacters = _binding!!.rvCharacters
         layoutManagerForCharacterList = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        characterListAdapter = CharactersListAdapter(requireContext(), ArrayList())
+        characterAdapter = MarvelListAdapter(requireContext(), ArrayList(), false)
         rvCharacters.layoutManager = layoutManagerForCharacterList
-        rvCharacters.adapter = characterListAdapter
+        rvCharacters.adapter = characterAdapter
         viewModel.getAllCharactersData(paginatedValueForCharacterList)
         callCharactersApi()
         rvCharacters.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -150,7 +150,7 @@ class HomeFragment : Fragment() {
                             //TODO: upon searching it is crashing because of this
 //                            _binding!!.pBarCharacters.visibility = View.GONE
                             flagForCharacterList = 0
-                            characterListAdapter.setData(it.list as ArrayList<Character>)
+                            characterAdapter.setData(it.list as ArrayList<Character>)
                         }
                     }
                     delay(1000)
