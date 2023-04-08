@@ -44,12 +44,14 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             _binding.fabMain.id -> {
                 if(isOpen){
                     scaleOutroAnimation()
+                    _binding.fabMain.setImageResource(R.drawable.ic_add)
                     _binding.fab1.visibility = View.GONE
                     _binding.fab2.visibility = View.GONE
                     _binding.fab3.visibility = View.GONE
                     isOpen = false
                 }else{
                     scaleIntroAnimation()
+                    _binding.fabMain.setImageResource(R.drawable.ic_close)
                     _binding.fab1.visibility = View.VISIBLE
                     _binding.fab2.visibility = View.VISIBLE
                     _binding.fab3.visibility = View.VISIBLE
@@ -70,7 +72,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y (50%)
         )
 
-        scaleAnimation.setDuration(500)
+        scaleAnimation.duration = 200
 
         _binding.fab1.startAnimation(scaleAnimation)
         _binding.fab2.startAnimation(scaleAnimation)
@@ -86,10 +88,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             Animation.RELATIVE_TO_SELF, 0.5f,  // Pivot X (50%)
             Animation.RELATIVE_TO_SELF, 0.5f // Pivot Y (50%)
         )
-
-
-        animation.setDuration(200)
-
+        animation.duration = 200
         _binding.fab1.startAnimation(animation)
         _binding.fab2.startAnimation(animation)
         _binding.fab3.startAnimation(animation)
