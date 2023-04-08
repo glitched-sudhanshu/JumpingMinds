@@ -46,9 +46,8 @@ class MarvelListViewModel @Inject constructor(
         charactersUseCase(offset = offset).collect {
             when (it) {
                 is Response.Success -> {
-                    val existingList = _marvelCharactersValue.value.list.toMutableList()
-                    existingList.addAll(it.data ?: emptyList())
-                    _marvelCharactersValue.value = CharacterListState(list = existingList)
+                    _marvelCharactersValue.value =
+                        CharacterListState(list = it.data ?: emptyList())
                 }
                 is Response.Loading -> {
                     _marvelCharactersValue.value = CharacterListState(isLoading = true)

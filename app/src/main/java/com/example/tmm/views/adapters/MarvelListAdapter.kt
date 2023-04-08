@@ -9,11 +9,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tmm.databinding.MarvelItemBinding
-import com.example.tmm.domain.model.Character
-import com.example.tmm.domain.model.Creator
+import com.example.tmm.domain.model.*
 import java.lang.Math.min
 
-class MarvelListAdapter<T>(private val context: Context, var itemList: ArrayList<T>, val isSearch : Boolean) :
+class MarvelListAdapter<T>(
+    private val context: Context,
+    var itemList: ArrayList<T>,
+    val isSearch: Boolean,
+) :
     RecyclerView.Adapter<MarvelListAdapter<T>.MarvelListViewHolder>() {
 
     inner class MarvelListViewHolder(binding: MarvelItemBinding) :
@@ -26,15 +29,13 @@ class MarvelListAdapter<T>(private val context: Context, var itemList: ArrayList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarvelListViewHolder {
 
         val binding = MarvelItemBinding.inflate(LayoutInflater.from(context), parent, false)
-        if(isSearch)
-        {
+        if (isSearch) {
             val cardWidth = parent.width / 2 - (2 * 10)
 
             val layoutParams = binding.clItem.layoutParams as ViewGroup.MarginLayoutParams
             val cardHeight = layoutParams.height
             Log.d(TAG, "onCreateViewHolder: $cardHeight , $cardWidth")
             val cardSideDimension = min(cardWidth, cardHeight)
-
             layoutParams.height = cardSideDimension + 200
             layoutParams.width = cardSideDimension
             layoutParams.setMargins(10, 10, 10, 10)
@@ -49,7 +50,10 @@ class MarvelListAdapter<T>(private val context: Context, var itemList: ArrayList
             is Creator -> {
                 val fullName = "${item.firstName} ${item.lastName}"
                 holder.itemTitle.text = fullName
-                val imageUrl = "${item.thumbnail.replace("http", "https")}/portrait_xlarge.${item.thumbnailExt}"
+                val imageUrl = "${
+                    item.thumbnail.replace("http",
+                        "https")
+                }/portrait_xlarge.${item.thumbnailExt}"
                 Glide.with(context)
                     .load(imageUrl)
                     .into(holder.itemImage)
@@ -59,7 +63,10 @@ class MarvelListAdapter<T>(private val context: Context, var itemList: ArrayList
             }
             is Character -> {
                 holder.itemTitle.text = item.name
-                val imageUrl = "${item.thumbnail.replace("http", "https")}/portrait_xlarge.${item.thumbnailExt}"
+                val imageUrl = "${
+                    item.thumbnail.replace("http",
+                        "https")
+                }/portrait_xlarge.${item.thumbnailExt}"
                 Glide.with(context)
                     .load(imageUrl)
                     .into(holder.itemImage)
@@ -67,6 +74,49 @@ class MarvelListAdapter<T>(private val context: Context, var itemList: ArrayList
                     Toast.makeText(context, "Clicked ${item.name}", Toast.LENGTH_SHORT).show()
                 }
             }
+
+            is MarvelComic -> {
+                holder.itemTitle.text = item.title
+                val imageUrl = "${
+                    item.thumbnail.replace("http",
+                        "https")
+                }/portrait_xlarge.${item.thumbnailExt}"
+                Glide.with(context)
+                    .load(imageUrl)
+                    .into(holder.itemImage)
+                holder.itemCard.setOnClickListener {
+                    Toast.makeText(context, "Clicked ${item.title}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            is MarvelEvent -> {
+                holder.itemTitle.text = item.title
+                val imageUrl = "${
+                    item.thumbnail.replace("http",
+                        "https")
+                }/portrait_xlarge.${item.thumbnailExt}"
+                Glide.with(context)
+                    .load(imageUrl)
+                    .into(holder.itemImage)
+                holder.itemCard.setOnClickListener {
+                    Toast.makeText(context, "Clicked ${item.title}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            is MarvelSeries -> {
+                holder.itemTitle.text = item.title
+                val imageUrl = "${
+                    item.thumbnail.replace("http",
+                        "https")
+                }/portrait_xlarge.${item.thumbnailExt}"
+                Glide.with(context)
+                    .load(imageUrl)
+                    .into(holder.itemImage)
+                holder.itemCard.setOnClickListener {
+                    Toast.makeText(context, "Clicked ${item.title}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
         }
     }
 
@@ -76,6 +126,11 @@ class MarvelListAdapter<T>(private val context: Context, var itemList: ArrayList
 
     fun setData(itemList: ArrayList<T>) {
         this.itemList = itemList
+        notifyDataSetChanged()
+    }
+
+    fun addData(itemList: ArrayList<T>) {
+        this.itemList.addAll(itemList)
         notifyDataSetChanged()
     }
 }

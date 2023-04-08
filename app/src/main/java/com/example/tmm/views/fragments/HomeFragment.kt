@@ -103,7 +103,7 @@ class HomeFragment : Fragment() {
                         it.list.isNotEmpty()->{
 //                            _binding!!.pBarCreators.visibility = View.GONE
                             flagForCreatorList = 0
-                            creatorAdapter.setData(it.list as ArrayList<Creator>)
+                            creatorAdapter.addData(it.list as ArrayList<Creator>)
                         }
                     }
                     delay(1000)
@@ -150,7 +150,7 @@ class HomeFragment : Fragment() {
                             //TODO: upon searching it is crashing because of this
 //                            _binding!!.pBarCharacters.visibility = View.GONE
                             flagForCharacterList = 0
-                            characterAdapter.setData(it.list as ArrayList<Character>)
+                            characterAdapter.addData(it.list as ArrayList<Character>)
                         }
                     }
                     delay(1000)

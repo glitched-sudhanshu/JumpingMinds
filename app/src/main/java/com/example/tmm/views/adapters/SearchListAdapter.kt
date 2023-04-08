@@ -3,13 +3,16 @@ package com.example.tmm.views.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tmm.databinding.SearchMenuItemBinding
 import com.example.tmm.domain.model.ListViewItem
 
-class SearchListAdapter(private val context : Context, private val listItems : Array<ListViewItem>, onSearchByItemClickListener: OnSearchByItemClickListener) :RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
+class SearchListAdapter(
+    private val context: Context,
+    private val listItems: Array<ListViewItem>,
+    onSearchByItemClickListener: OnSearchByItemClickListener,
+) : RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
 
     private var onSearchByItemClickListener: OnSearchByItemClickListener? = null
 
@@ -17,7 +20,7 @@ class SearchListAdapter(private val context : Context, private val listItems : A
         this.onSearchByItemClickListener = onSearchByItemClickListener
     }
 
-    inner class ViewHolder(binding : SearchMenuItemBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(binding: SearchMenuItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.imgSearchBy
         val searchBy = binding.clSearchBy
         val text = binding.txtSearchBy

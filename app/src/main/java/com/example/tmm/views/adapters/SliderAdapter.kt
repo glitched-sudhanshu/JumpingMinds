@@ -8,7 +8,8 @@ import com.example.tmm.domain.model.ListViewItem
 import com.smarteist.autoimageslider.SliderViewAdapter
 
 
-class SliderAdapter(private val listViewItem: Array<ListViewItem>, private val fragment : Fragment) : SliderViewAdapter<SliderAdapter.Holder>() {
+class SliderAdapter(private val listViewItem: Array<ListViewItem>, private val fragment: Fragment) :
+    SliderViewAdapter<SliderAdapter.Holder>() {
 
     inner class Holder(private val view: CarouselItemBinding) : ViewHolder(view.root) {
         fun bind(item: ListViewItem) {
@@ -18,7 +19,8 @@ class SliderAdapter(private val listViewItem: Array<ListViewItem>, private val f
     }
 
     override fun onCreateViewHolder(parent: ViewGroup): Holder {
-        val binding = CarouselItemBinding.inflate(LayoutInflater.from(fragment.activity), parent, false)
+        val binding =
+            CarouselItemBinding.inflate(LayoutInflater.from(fragment.activity), parent, false)
         return Holder(binding)
     }
 

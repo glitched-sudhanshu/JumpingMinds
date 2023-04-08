@@ -1,8 +1,6 @@
 package com.example.tmm.views.fragments
 
 import android.os.Bundle
-import android.content.ContentValues.TAG
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tmm.R
-import com.example.tmm.data.data_source.dto.Comics
 import com.example.tmm.databinding.FragmentSearchBinding
 import com.example.tmm.domain.model.*
 import com.example.tmm.ui.viewmodels.MarvelListViewModel
@@ -28,7 +25,9 @@ import com.example.tmm.utils.Constants.SEARCH_FOR_SERIES
 import com.example.tmm.views.adapters.MarvelListAdapter
 import com.example.tmm.views.adapters.SearchListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -41,12 +40,12 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
     private lateinit var rvSearchResult: RecyclerView
-    private lateinit var adapterCharacterSearchResult : MarvelListAdapter<Character>
-    private lateinit var adapterCreatorSearchResult : MarvelListAdapter<Creator>
+    private lateinit var adapterCharacterSearchResult: MarvelListAdapter<Character>
+    private lateinit var adapterCreatorSearchResult: MarvelListAdapter<Creator>
+    private lateinit var adapterComicSearchResult: MarvelListAdapter<MarvelComic>
+    private lateinit var adapterEventSearchResult: MarvelListAdapter<MarvelEvent>
+    private lateinit var adapterSeriesSearchResult: MarvelListAdapter<MarvelSeries>
     private lateinit var layoutManager: GridLayoutManager
-//    private lateinit var adapterComicSearchResult : MarvelListAdapter<MarvelComic>
-//    private lateinit var adapterEventSearchResult : MarvelListAdapter<MarvelEvent>
-//    private lateinit var adapterSeriesSearchResult : MarvelListAdapter<MarvelSeries>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -172,6 +171,12 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun searchForSeries() {
+        _binding!!.rvSearchResult.visibility = View.VISIBLE
+        rvSearchResult = _binding!!.rvSearchResult
+        adapterSeriesSearchResult =
+            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+        rvSearchResult.layoutManager = layoutManager
+        rvSearchResult.adapter = adapterSeriesSearchResult
         viewModel.getAllSearchedSeries(searchTerm)
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.marvelSeriesValue.collect {
@@ -186,10 +191,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                     it.list.isNotEmpty() -> {
 //                        _binding!!.pBarCharacters.visibility = View.GONE
-//                        characterListAdapter.setData(it.characterList as ArrayList<Character>)
-                        for (item in it.list) {
-                            Log.d(TAG, "search: ${item.title}")
-                        }
+                        adapterSeriesSearchResult.setData(it.list as ArrayList<MarvelSeries>)
                     }
                 }
             }
@@ -197,6 +199,11 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun searchForEvents() {
+        _binding!!.rvSearchResult.visibility = View.VISIBLE
+        rvSearchResult = _binding!!.rvSearchResult
+        adapterEventSearchResult = MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+        rvSearchResult.layoutManager = layoutManager
+        rvSearchResult.adapter = adapterEventSearchResult
         viewModel.getAllSearchedEvents(searchTerm)
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.marvelEventValue.collect {
@@ -211,10 +218,35 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                     it.list.isNotEmpty() -> {
 //                        _binding!!.pBarCharacters.visibility = View.GONE
-//                        characterListAdapter.setData(it.characterList as ArrayList<Character>)
-                        for (item in it.list) {
-                            Log.d(TAG, "search: ${item.title}")
-                        }
+                        adapterEventSearchResult.setData(it.list as ArrayList<MarvelEvent>)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun searchForCreator() {
+        _binding!!.rvSearchResult.visibility = View.VISIBLE
+        rvSearchResult = _binding!!.rvSearchResult
+        adapterCreatorSearchResult =
+            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+        rvSearchResult.layoutManager = layoutManager
+        rvSearchResult.adapter = adapterCreatorSearchResult
+        viewModel.getAllSearchedCreatorsData(searchTerm)
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.marvelCreatorsValue.collect {
+                when {
+                    it.isLoading -> {
+//                        _binding!!.pBarCharacters.visibility = View.VISIBLE
+                    }
+                    it.error.isNotBlank() -> {
+//                        _binding!!.pBarCharacters.visibility = View.GONE
+                        Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                    it.list.isNotEmpty() -> {
+//                        _binding!!.pBarCharacters.visibility = View.GONE
+                        adapterCreatorSearchResult.setData(it.list as ArrayList<Creator>)
                     }
                 }
             }
@@ -222,6 +254,11 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun searchForComics() {
+        _binding!!.rvSearchResult.visibility = View.VISIBLE
+        rvSearchResult = _binding!!.rvSearchResult
+        adapterComicSearchResult = MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+        rvSearchResult.layoutManager = layoutManager
+        rvSearchResult.adapter = adapterComicSearchResult
         viewModel.getAllSearchedComics(searchTerm)
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.marvelComicValue.collect {
@@ -236,32 +273,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                     it.list.isNotEmpty() -> {
 //                        _binding!!.pBarCharacters.visibility = View.GONE
-//                        characterListAdapter.setData(it.characterList as ArrayList<Character>)
-                        for (item in it.list) {
-                            Log.d(TAG, "search: ${item.title}")
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private fun searchForCreator() {
-
-        CoroutineScope(Dispatchers.Main).launch {
-            viewModel.marvelCreatorsValue.collect {
-                when {
-                    it.isLoading -> {
-//                        _binding!!.pBarCharacters.visibility = View.VISIBLE
-                    }
-                    it.error.isNotBlank() -> {
-//                        _binding!!.pBarCharacters.visibility = View.GONE
-                        Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                    it.list.isNotEmpty() -> {
-//                        _binding!!.pBarCharacters.visibility = View.GONE
-//                        adapterCharacterSearchResult.setData(it.list as ArrayList<Character>)
+                        adapterComicSearchResult.setData(it.list as ArrayList<MarvelComic>)
                     }
                 }
             }
@@ -271,7 +283,8 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchForCharacter() {
         _binding!!.rvSearchResult.visibility = View.VISIBLE
         rvSearchResult = _binding!!.rvSearchResult
-        adapterCharacterSearchResult = MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+        adapterCharacterSearchResult =
+            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
         rvSearchResult.layoutManager = layoutManager
         rvSearchResult.adapter = adapterCharacterSearchResult
         viewModel.getAllSearchedCharacters(searchTerm)
