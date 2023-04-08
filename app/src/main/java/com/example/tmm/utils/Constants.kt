@@ -20,4 +20,16 @@ object Constants {
         val md = MessageDigest.getInstance("MD5")
         return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32,'0')
     }
+
+
+    var LIMIT_VALUE_FOR_CHARACTERS = 15
+    var LIMIT_VALUE_FOR_CREATORS = 15
+    var LIMIT_VALUE_FOR_COMICS = 15
+    var LIMIT_VALUE_FOR_SERIES = 15
+    var LIMIT_VALUE_FOR_EVENTS = 15
+    var PAGINATED_VALUE_FOR_CHARACTERS = 0
+    var PAGINATED_VALUE_FOR_CREATORS = 0
+    var PAGINATED_VALUE_FOR_COMICS = 0
+    var PAGINATED_VALUE_FOR_SERIES = 0
+    var PAGINATED_VALUE_FOR_EVENTS = 0
 }

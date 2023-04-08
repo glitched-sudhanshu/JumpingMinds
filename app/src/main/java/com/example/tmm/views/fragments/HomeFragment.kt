@@ -16,6 +16,13 @@ import com.example.tmm.domain.model.CarouselItem
 import com.example.tmm.domain.model.Character
 import com.example.tmm.domain.model.Creator
 import com.example.tmm.ui.viewmodels.MarvelListViewModel
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CHARACTERS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CREATORS
+import com.example.tmm.utils.Constants.PAGINATED_VALUE_FOR_CHARACTERS
+import com.example.tmm.utils.Constants.PAGINATED_VALUE_FOR_COMICS
+import com.example.tmm.utils.Constants.PAGINATED_VALUE_FOR_CREATORS
+import com.example.tmm.utils.Constants.PAGINATED_VALUE_FOR_EVENTS
+import com.example.tmm.utils.Constants.PAGINATED_VALUE_FOR_SERIES
 import com.example.tmm.views.adapters.CharactersListAdapter
 import com.example.tmm.views.adapters.CreatorsListAdapter
 import com.example.tmm.views.adapters.SliderAdapter
@@ -34,13 +41,11 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
 
     var flagForCharacterList = 3
-    var paginatedValueForCharacterList = 0;
     private lateinit var rvCharacters : RecyclerView
     private lateinit var characterListAdapter : CharactersListAdapter
     private lateinit var layoutManagerForCharacterList: LinearLayoutManager
 
     var flagForCreatorList = 3
-    var paginatedValueForCreatorList = 0;
     private lateinit var rvCreator : RecyclerView
     private lateinit var creatorListAdapter : CreatorsListAdapter
     private lateinit var layoutManagerForCreatorList: LinearLayoutManager
@@ -64,7 +69,6 @@ class HomeFragment : Fragment() {
 
         setupCharacterRecyclerView()
         setupCreatorRecyclerView()
-        viewModel.getAllSeriesData(0)
     }
 
     private fun setupCreatorRecyclerView() {
@@ -73,14 +77,14 @@ class HomeFragment : Fragment() {
         creatorListAdapter = CreatorsListAdapter(requireContext(), ArrayList())
         rvCreator.layoutManager = layoutManagerForCreatorList
         rvCreator.adapter = creatorListAdapter
-        viewModel.getAllCreatorsData(paginatedValueForCreatorList)
+        viewModel.getAllCreatorsData(PAGINATED_VALUE_FOR_CREATORS)
         callCreatorApi()
         rvCreator.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if(layoutManagerForCreatorList.findLastVisibleItemPosition() == layoutManagerForCreatorList.itemCount-1){
-                    paginatedValueForCreatorList += 20;
-                    viewModel.getAllCreatorsData(paginatedValueForCreatorList)
+                    PAGINATED_VALUE_FOR_CREATORS += LIMIT_VALUE_FOR_CREATORS
+                    viewModel.getAllCreatorsData(PAGINATED_VALUE_FOR_CREATORS)
                     callCreatorApi()
                 }
             }
@@ -119,14 +123,13 @@ class HomeFragment : Fragment() {
         characterListAdapter = CharactersListAdapter(requireContext(), ArrayList())
         rvCharacters.layoutManager = layoutManagerForCharacterList
         rvCharacters.adapter = characterListAdapter
-        viewModel.getAllCharactersData(paginatedValueForCharacterList)
         callCharactersApi()
         rvCharacters.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if(layoutManagerForCharacterList.findLastVisibleItemPosition() == layoutManagerForCharacterList.itemCount-1){
-                    paginatedValueForCharacterList += 20;
-                    viewModel.getAllCharactersData(paginatedValueForCharacterList)
+                    PAGINATED_VALUE_FOR_CHARACTERS += LIMIT_VALUE_FOR_CHARACTERS;
+                    viewModel.getAllCharactersData(PAGINATED_VALUE_FOR_CHARACTERS)
                     callCharactersApi()
                 }
             }
@@ -174,6 +177,15 @@ class HomeFragment : Fragment() {
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
         sliderView.autoCycleDirection = SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH
         sliderView.startAutoCycle()
+    }
+
+    override fun onStart() {
+        super.onStart()
+//        viewModel.getAllEventsData(PAGINATED_VALUE_FOR_EVENTS)
+//        viewModel.getAllSeriesData(PAGINATED_VALUE_FOR_SERIES)
+        viewModel.getAllCharactersData(PAGINATED_VALUE_FOR_CHARACTERS)
+//        viewModel.getAllCreatorsData(PAGINATED_VALUE_FOR_CREATORS)
+//        viewModel.getAllComicsData(PAGINATED_VALUE_FOR_COMICS)
     }
 
     override fun onDestroyView() {

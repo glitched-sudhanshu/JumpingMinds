@@ -7,6 +7,11 @@ import com.example.tmm.utils.Constants.CHARACTERS_ENDPOINT
 import com.example.tmm.utils.Constants.COMICS_ENDPOINT
 import com.example.tmm.utils.Constants.CREATORS_ENDPOINT
 import com.example.tmm.utils.Constants.EVENTS_ENDPOINT
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CHARACTERS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_COMICS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CREATORS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_EVENTS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_SERIES
 import com.example.tmm.utils.Constants.SERIES_ENDPOINT
 import com.example.tmm.utils.Constants.TIMESTAMP
 import retrofit2.http.GET
@@ -53,5 +58,47 @@ interface MarvelApi {
         @Query("hash") hash: String = Constants.hash(),
         @Query("offset") offset: String,
     ): SeriesDTO
+
+    @GET(CHARACTERS_ENDPOINT)
+    suspend fun getAllSearchCharacters(
+        @Query("apikey") apikey: String = API_KEY,
+        @Query("ts") ts: String = TIMESTAMP,
+        @Query("hash") hash: String = Constants.hash(),
+        @Query("nameStartsWith")search:String
+    ): CharactersDTO
+
+    @GET(CREATORS_ENDPOINT)
+    suspend fun getAllSearchCreators(
+        @Query("apikey") apikey: String = API_KEY,
+        @Query("ts") ts: String = TIMESTAMP,
+        @Query("hash") hash: String = Constants.hash(),
+        @Query("nameStartsWith")search:String
+    ): CreatorsDTO
+
+    @GET(COMICS_ENDPOINT)
+    suspend fun getAllSearchComic(
+        @Query("apikey") apikey: String = API_KEY,
+        @Query("ts") ts: String = TIMESTAMP,
+        @Query("hash") hash: String = Constants.hash(),
+        @Query("titleStartsWith")search:String
+    ): ComicsDTO
+
+    @GET(EVENTS_ENDPOINT)
+    suspend fun getAllSearchEvents(
+        @Query("apikey") apikey: String = API_KEY,
+        @Query("ts") ts: String = TIMESTAMP,
+        @Query("hash") hash: String = Constants.hash(),
+        @Query("nameStartsWith")search:String
+    ): EventsDTO
+
+    @GET(SERIES_ENDPOINT)
+    suspend fun getAllSearchSeries(
+        @Query("apikey") apikey: String = API_KEY,
+        @Query("ts") ts: String = TIMESTAMP,
+        @Query("hash") hash: String = Constants.hash(),
+        @Query("titleStartsWith")search:String
+    ): SeriesDTO
+
+
 
 }

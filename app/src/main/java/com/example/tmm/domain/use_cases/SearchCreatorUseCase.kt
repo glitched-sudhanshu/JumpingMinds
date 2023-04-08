@@ -1,6 +1,5 @@
 package com.example.tmm.domain.use_cases
 
-import com.example.tmm.domain.model.Character
 import com.example.tmm.domain.model.Creator
 import com.example.tmm.domain.repository.MarvelRepository
 import com.example.tmm.utils.Response
@@ -10,19 +9,22 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class CreatorUseCase @Inject constructor(
-    private val repository: MarvelRepository,
+class SearchCreatorUseCase @Inject constructor(
+    private val repository: MarvelRepository
 ) {
-    operator fun invoke(offset: Int): Flow<Response<List<Creator>>> = flow {
-        try {
+    operator fun invoke(search : String) : Flow<Response<List<Creator>>> = flow {
+        try{
             emit(Response.Loading<List<Creator>>())
-            val list = repository.getAllCreator(offset = offset).data.results.map {
+            val list = repository.getAllSearchCreator(search = search).data.results.map {
                 it.toCreator()
             }
             emit(Response.Success<List<Creator>>(list))
-        } catch (e: HttpException) {
+        }
+        catch (e : HttpException){
             emit(Response.Error<List<Creator>>(e.printStackTrace().toString()))
-        } catch (e: IOException) {
+        }
+        catch (e : IOException)
+        {
             emit(Response.Error<List<Creator>>(e.printStackTrace().toString()))
         }
     }

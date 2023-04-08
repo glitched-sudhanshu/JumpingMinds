@@ -14,4 +14,16 @@ interface MarvelRepository {
     suspend fun getAllEvents(offset: Int): EventsDTO
 
     suspend fun getAllSeries(offset: Int): SeriesDTO
+
+    suspend fun getAllSearchCharacter(search: String): CharactersDTO
+
+    suspend fun getAllSearchCreator(search: String): CreatorsDTO
+
+    suspend fun getAllSearchComics(search: String): ComicsDTO
+
+    suspend fun getAllSearchEvents(search: String): EventsDTO
+
+    suspend fun getAllSearchSeries(search: String): SeriesDTO
+
+
 }

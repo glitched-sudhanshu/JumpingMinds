@@ -27,4 +27,24 @@ class MarvelRepositoryImpl @Inject constructor(
     override suspend fun getAllSeries(offset: Int): SeriesDTO {
         return api.getAllSeries(offset = offset.toString())
     }
+
+    override suspend fun getAllSearchCharacter(search: String): CharactersDTO {
+        return api.getAllSearchCharacters(search = search)
+    }
+
+    override suspend fun getAllSearchCreator(search: String): CreatorsDTO {
+        return api.getAllSearchCreators(search = search)
+    }
+
+    override suspend fun getAllSearchComics(search: String): ComicsDTO {
+        return api.getAllSearchComic(search = search)
+    }
+
+    override suspend fun getAllSearchEvents(search: String): EventsDTO {
+        return api.getAllSearchEvents(search = search)
+    }
+
+    override suspend fun getAllSearchSeries(search: String): SeriesDTO {
+        return api.getAllSearchSeries(search = search)
+    }
 }
