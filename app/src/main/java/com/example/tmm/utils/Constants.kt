@@ -28,6 +28,19 @@ object Constants {
 //    const val SEARCH_FOR_EVENTS = 103
 //    const val SEARCH_FOR_SERIES = 104
 
+    var PAGINATED_VALUE_FOR_CHARACTERS = 0
+    var PAGINATED_VALUE_FOR_CREATORS = 0
+    var PAGINATED_VALUE_FOR_COMICS = 0
+    var PAGINATED_VALUE_FOR_EVENTS = 0
+    var PAGINATED_VALUE_FOR_SERIES = 0
+
+
+    var LIMIT_VALUE_FOR_CHARACTERS = "15"
+    var LIMIT_VALUE_FOR_CREATORS = "15"
+    var LIMIT_VALUE_FOR_COMICS = "15"
+    var LIMIT_VALUE_FOR_EVENTS = "15"
+    var LIMIT_VALUE_FOR_SERIES = "15"
+
     const val SEARCH_FOR_CHARACTERS = "Search characters by Name"
     const val SEARCH_FOR_CREATORS = "Search creators by Name"
     const val SEARCH_FOR_COMICS = "Search comics by Title"

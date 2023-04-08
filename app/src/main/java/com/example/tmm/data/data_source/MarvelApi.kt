@@ -7,6 +7,11 @@ import com.example.tmm.utils.Constants.CHARACTERS_ENDPOINT
 import com.example.tmm.utils.Constants.COMICS_ENDPOINT
 import com.example.tmm.utils.Constants.CREATORS_ENDPOINT
 import com.example.tmm.utils.Constants.EVENTS_ENDPOINT
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CHARACTERS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_COMICS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CREATORS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_EVENTS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_SERIES
 import com.example.tmm.utils.Constants.SERIES_ENDPOINT
 import com.example.tmm.utils.Constants.TIMESTAMP
 import retrofit2.http.GET
@@ -19,6 +24,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
+        @Query("limit") limit: String = LIMIT_VALUE_FOR_CHARACTERS,
         @Query("offset") offset: String,
     ): CharactersDTO
 
@@ -27,7 +33,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
-        @Query("nameStartsWith")search:String
+        @Query("nameStartsWith") search: String,
     ): CharactersDTO
 
     @GET(CREATORS_ENDPOINT)
@@ -35,6 +41,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
+        @Query("limit") limit: String = LIMIT_VALUE_FOR_CREATORS,
         @Query("offset") offset: String,
     ): CreatorsDTO
 
@@ -43,7 +50,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
-        @Query("nameStartsWith")search:String
+        @Query("nameStartsWith") search: String,
     ): CreatorsDTO
 
     @GET(COMICS_ENDPOINT)
@@ -51,6 +58,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
+        @Query("limit") limit : String = LIMIT_VALUE_FOR_COMICS,
         @Query("offset") offset: String,
     ): ComicsDTO
 
@@ -59,7 +67,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
-        @Query("titleStartsWith")search:String
+        @Query("titleStartsWith") search: String,
     ): ComicsDTO
 
     @GET(EVENTS_ENDPOINT)
@@ -67,6 +75,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
+        @Query("limit") limit : String = LIMIT_VALUE_FOR_EVENTS,
         @Query("offset") offset: String,
     ): EventsDTO
 
@@ -75,7 +84,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
-        @Query("nameStartsWith")search:String
+        @Query("nameStartsWith") search: String,
     ): EventsDTO
 
     @GET(SERIES_ENDPOINT)
@@ -83,6 +92,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
+        @Query("limit") limit: String = LIMIT_VALUE_FOR_SERIES,
         @Query("offset") offset: String,
     ): SeriesDTO
 
@@ -91,7 +101,7 @@ interface MarvelApi {
         @Query("apikey") apikey: String = API_KEY,
         @Query("ts") ts: String = TIMESTAMP,
         @Query("hash") hash: String = Constants.hash(),
-        @Query("titleStartsWith")search:String
+        @Query("titleStartsWith") search: String,
     ): SeriesDTO
 
 }
