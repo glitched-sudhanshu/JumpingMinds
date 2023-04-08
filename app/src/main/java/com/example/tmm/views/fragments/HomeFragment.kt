@@ -61,11 +61,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupSliderView()
-
         setupCharacterRecyclerView()
         setupCreatorRecyclerView()
         viewModel.getAllSeriesData(0)
     }
+
 
     private fun setupCreatorRecyclerView() {
         rvCreator = _binding!!.rvCreators
