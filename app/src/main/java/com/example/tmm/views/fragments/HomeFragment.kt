@@ -33,6 +33,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.log
+import androidx.navigation.findNavController
+import com.example.tmm.utils.Constants.SP_CHARACTERS
+import com.example.tmm.utils.Constants.SP_COMICS
+import com.example.tmm.utils.Constants.SP_CREATORS
+import com.example.tmm.utils.Constants.SP_EVENTS
+import com.example.tmm.utils.Constants.SP_SERIES
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -58,13 +64,44 @@ class HomeFragment : Fragment() {
 
         setupSliderView()
         val listRecyclerView = arrayOf(_binding!!.rvCharacters, _binding!!.rvCreators, _binding!!.rvComics, _binding!!.rvEvents, _binding!!.rvSeries)
-        apiData = ApiData(viewModel, requireContext(), listRecyclerView)
+        val listDetailed = arrayOf(false, false, false, false, false)
+        apiData = ApiData(viewModel, requireContext(), listRecyclerView, listDetailed, this)
 
         apiData.setupCharacterRecyclerView()
         apiData.setupCreatorRecyclerView()
         apiData.setupComicRecyclerView()
         apiData.setupEventsRecyclerView()
         apiData.setupSeriesRecyclerView()
+
+        setShowAll()
+    }
+
+    private fun setShowAll() {
+        _binding!!.btnShowCharacters.setOnClickListener {
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment_activity_home)
+            val action = HomeFragmentDirections.actionNavigationHomeToAllItemsFragment(SP_CHARACTERS)
+            navController.navigate(action)
+        }
+        _binding!!.btnShowCreators.setOnClickListener {
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment_activity_home)
+            val action = HomeFragmentDirections.actionNavigationHomeToAllItemsFragment(SP_CREATORS)
+            navController.navigate(action)
+        }
+        _binding!!.btnShowComics.setOnClickListener {
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment_activity_home)
+            val action = HomeFragmentDirections.actionNavigationHomeToAllItemsFragment(SP_COMICS)
+            navController.navigate(action)
+        }
+        _binding!!.btnShowEvents.setOnClickListener {
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment_activity_home)
+            val action = HomeFragmentDirections.actionNavigationHomeToAllItemsFragment(SP_EVENTS)
+            navController.navigate(action)
+        }
+        _binding!!.btnShowSeries.setOnClickListener {
+            val navController = requireActivity().findNavController(R.id.nav_host_fragment_activity_home)
+            val action = HomeFragmentDirections.actionNavigationHomeToAllItemsFragment(SP_SERIES)
+            navController.navigate(action)
+        }
     }
 
     private fun setupSliderView() {

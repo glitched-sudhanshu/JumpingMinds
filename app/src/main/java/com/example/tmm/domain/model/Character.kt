@@ -1,5 +1,9 @@
 package com.example.tmm.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Character(
     val id: Int,
     val name: String,
@@ -7,4 +11,4 @@ data class Character(
     val thumbnail: String,
     val thumbnailExt: String,
     val comics: List<String>,
-)
+) : Parcelable
