@@ -11,7 +11,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="16dp">
 
 
         <com.smarteist.autoimageslider.SliderView
@@ -43,91 +44,269 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.3" />
 
-        <TextView
-            android:id="@+id/txtCharacters"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/architects_daughter"
-            android:text="Characters-"
-            android:textColor="@color/offWhite"
-            android:textSize="20sp"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carousel" />
+            app:layout_constraintTop_toBottomOf="@id/guideline4"
+            app:layout_constraintVertical_bias="0.0">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCharacters"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCharacters" >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </androidx.recyclerview.widget.RecyclerView>
+                <TextView
+                    android:id="@+id/txtCharacters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/architects_daughter"
+                    android:text="Characters-"
+                    android:textColor="@color/offWhite"
+                    android:textSize="20sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/btnShowCharacters"
+                    app:layout_constraintEnd_toStartOf="@+id/btnShowCharacters"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-        <ProgressBar
-            android:id="@+id/pBarCharacters"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/txtCharacters"
-            app:layout_constraintStart_toStartOf="@+id/txtCharacters"
-            app:layout_constraintTop_toBottomOf="@+id/txtCharacters"
-            android:indeterminate="true"
-            android:indeterminateTintMode="src_atop"
-            android:indeterminateTint="@color/red_200"/>
 
-        <TextView
-            android:id="@+id/txtCreators"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/architects_daughter"
-            android:text="Creators-"
-            android:textColor="@color/offWhite"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rvCharacters" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShowCharacters"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Show all ->"
+                    android:textAppearance="@style/MyTextAppearance"
+                    android:textColor="@color/red_500"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/txtCharacters"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCreators"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCreators" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCharacters"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowCharacters">
 
-        <ProgressBar
-            android:id="@+id/pBarCreators"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/txtCreators"
-            app:layout_constraintStart_toStartOf="@+id/txtCreators"
-            app:layout_constraintTop_toBottomOf="@+id/txtCreators"
-            android:indeterminate="true"
-            android:indeterminateTintMode="src_atop"
-            android:indeterminateTint="@color/red_200" />
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <ProgressBar
+                    android:id="@+id/pBarCharacters"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/red_200"
+                    android:indeterminateTintMode="src_atop"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/txtCharacters"
+                    app:layout_constraintStart_toStartOf="@+id/txtCharacters"
+                    app:layout_constraintTop_toBottomOf="@+id/txtCharacters" />
+
+                <TextView
+                    android:id="@+id/txtCreators"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/architects_daughter"
+                    android:text="Creators-"
+                    android:textColor="@color/offWhite"
+                    android:textSize="20sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/btnShowCreators"
+                    app:layout_constraintEnd_toStartOf="@+id/btnShowCreators"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShowCreators"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Show all ->"
+                    android:textAppearance="@style/MyTextAppearance"
+                    android:textColor="@color/red_500"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/txtCreators"
+                    app:layout_constraintTop_toBottomOf="@+id/rvCharacters" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCreators"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowCreators" />
+
+                <ProgressBar
+                    android:id="@+id/pBarCreators"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/red_200"
+                    android:indeterminateTintMode="src_atop"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/txtCreators"
+                    app:layout_constraintStart_toStartOf="@+id/txtCreators"
+                    app:layout_constraintTop_toBottomOf="@+id/txtCreators" />
+
+                <TextView
+                    android:id="@+id/txtComic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/architects_daughter"
+                    android:text="Comics-"
+                    android:textColor="@color/offWhite"
+                    android:textSize="20sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/btnShowComics"
+                    app:layout_constraintEnd_toStartOf="@+id/btnShowComics"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShowComics"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Show all ->"
+                    android:textAppearance="@style/MyTextAppearance"
+                    android:textColor="@color/red_500"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/txtComic"
+                    app:layout_constraintTop_toBottomOf="@+id/rvCreators" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvComics"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowComics" />
+
+                <TextView
+                    android:id="@+id/txtEvents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/architects_daughter"
+                    android:text="Events-"
+                    android:textColor="@color/offWhite"
+                    android:textSize="20sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/btnShowEvents"
+                    app:layout_constraintEnd_toStartOf="@+id/btnShowEvents"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShowEvents"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Show all ->"
+                    android:textAppearance="@style/MyTextAppearance"
+                    android:textColor="@color/red_500"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/txtEvents"
+                    app:layout_constraintTop_toBottomOf="@+id/rvComics" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvEvents"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowEvents" />
+
+                <TextView
+                    android:id="@+id/txtSeries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/architects_daughter"
+                    android:text="Series-"
+                    android:textColor="@color/offWhite"
+                    android:textSize="20sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/btnShowSeries"
+                    app:layout_constraintEnd_toStartOf="@+id/btnShowSeries"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShowSeries"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Show all ->"
+                    android:textAppearance="@style/MyTextAppearance"
+                    android:textColor="@color/red_500"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/txtSeries"
+                    app:layout_constraintTop_toBottomOf="@+id/rvEvents" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSeries"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowSeries" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

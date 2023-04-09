@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.tmm.R
 import com.example.tmm.databinding.MarvelItemBinding
 import com.example.tmm.domain.model.*
 import java.lang.Math.min
@@ -56,6 +57,7 @@ class MarvelListAdapter<T>(
                 }/portrait_xlarge.${item.thumbnailExt}"
                 Glide.with(context)
                     .load(imageUrl)
+                    .placeholder(context.getDrawable(R.drawable.placeholder))
                     .into(holder.itemImage)
                 holder.itemCard.setOnClickListener {
                     Toast.makeText(context, "Clicked $fullName", Toast.LENGTH_SHORT).show()
@@ -69,6 +71,7 @@ class MarvelListAdapter<T>(
                 }/portrait_xlarge.${item.thumbnailExt}"
                 Glide.with(context)
                     .load(imageUrl)
+                    .placeholder(context.getDrawable(R.drawable.placeholder))
                     .into(holder.itemImage)
                 holder.itemCard.setOnClickListener {
                     Toast.makeText(context, "Clicked ${item.name}", Toast.LENGTH_SHORT).show()
@@ -83,6 +86,7 @@ class MarvelListAdapter<T>(
                 }/portrait_xlarge.${item.thumbnailExt}"
                 Glide.with(context)
                     .load(imageUrl)
+                    .placeholder(context.getDrawable(R.drawable.placeholder))
                     .into(holder.itemImage)
                 holder.itemCard.setOnClickListener {
                     Toast.makeText(context, "Clicked ${item.title}", Toast.LENGTH_SHORT).show()
@@ -97,6 +101,7 @@ class MarvelListAdapter<T>(
                 }/portrait_xlarge.${item.thumbnailExt}"
                 Glide.with(context)
                     .load(imageUrl)
+                    .placeholder(context.getDrawable(R.drawable.placeholder))
                     .into(holder.itemImage)
                 holder.itemCard.setOnClickListener {
                     Toast.makeText(context, "Clicked ${item.title}", Toast.LENGTH_SHORT).show()
@@ -111,6 +116,7 @@ class MarvelListAdapter<T>(
                 }/portrait_xlarge.${item.thumbnailExt}"
                 Glide.with(context)
                     .load(imageUrl)
+                    .placeholder(context.getDrawable(R.drawable.placeholder))
                     .into(holder.itemImage)
                 holder.itemCard.setOnClickListener {
                     Toast.makeText(context, "Clicked ${item.title}", Toast.LENGTH_SHORT).show()
@@ -131,6 +137,11 @@ class MarvelListAdapter<T>(
 
     fun addData(itemList: ArrayList<T>) {
         this.itemList.addAll(itemList)
+        notifyDataSetChanged()
+    }
+
+    fun clearData(){
+        this.itemList.clear()
         notifyDataSetChanged()
     }
 }

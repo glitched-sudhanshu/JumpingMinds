@@ -39,19 +39,10 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
-    private var flagForCharacterList = 3
-    private var flagForCreatorList = 3
-    private lateinit var rvCharacters : RecyclerView
-    private lateinit var layoutManagerForCharacterList: LinearLayoutManager
 
-    private lateinit var characterAdapter: MarvelListAdapter<Character>
-    private lateinit var creatorAdapter: MarvelListAdapter<Creator>
-
-    private lateinit var rvCreator : RecyclerView
-    private lateinit var layoutManagerForCreatorList: LinearLayoutManager
 
     private val viewModel : MarvelListViewModel by activityViewModels()
-
+    private lateinit var apiData: ApiData
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,101 +57,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupSliderView()
-        setupCharacterRecyclerView()
-        setupCreatorRecyclerView()
-    }
+        val listRecyclerView = arrayOf(_binding!!.rvCharacters, _binding!!.rvCreators, _binding!!.rvComics, _binding!!.rvEvents, _binding!!.rvSeries)
+        apiData = ApiData(viewModel, requireContext(), listRecyclerView)
 
-    private fun setupCreatorRecyclerView() {
-        rvCreator = _binding!!.rvCreators
-        layoutManagerForCreatorList = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        creatorAdapter = MarvelListAdapter(context = requireContext(), itemList =  ArrayList(), isSearch = false)
-        rvCreator.layoutManager = layoutManagerForCreatorList
-        rvCreator.adapter = creatorAdapter
-        viewModel.getAllCreatorsData(PAGINATED_VALUE_FOR_CREATORS)
-        callCreatorApi()
-        rvCreator.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if(layoutManagerForCreatorList.findLastVisibleItemPosition() == layoutManagerForCreatorList.itemCount-1){
-                    PAGINATED_VALUE_FOR_CREATORS += LIMIT_VALUE_FOR_CREATORS.toInt();
-                    viewModel.getAllCreatorsData(PAGINATED_VALUE_FOR_CREATORS)
-                    callCreatorApi()
-                }
-            }
-        })
-    }
-
-    private fun callCreatorApi() {
-        CoroutineScope(Dispatchers.Main).launch {
-            repeat(flagForCreatorList){
-                viewModel.marvelCreatorsValue.collect{
-                    when{
-                        it.isLoading->{
-//                            _binding!!.pBarCreators.visibility = View.VISIBLE
-                        }
-                        it.error.isNotBlank()->{
-//                            _binding!!.pBarCreators.visibility = View.GONE
-                            flagForCreatorList = 0
-                            Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
-                        }
-                        it.list.isNotEmpty()->{
-//                            _binding!!.pBarCreators.visibility = View.GONE
-                            flagForCreatorList = 0
-                            creatorAdapter.addData(it.list as ArrayList<Creator>)
-                        }
-                    }
-                    delay(1000)
-                }
-
-            }
-        }
-    }
-
-    private fun setupCharacterRecyclerView() {
-        rvCharacters = _binding!!.rvCharacters
-        layoutManagerForCharacterList = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        characterAdapter = MarvelListAdapter(requireContext(), ArrayList(), false)
-        rvCharacters.layoutManager = layoutManagerForCharacterList
-        rvCharacters.adapter = characterAdapter
-        viewModel.getAllCharactersData(PAGINATED_VALUE_FOR_CHARACTERS)
-        callCharactersApi()
-        rvCharacters.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if(layoutManagerForCharacterList.findLastVisibleItemPosition() == layoutManagerForCharacterList.itemCount-1){
-                    PAGINATED_VALUE_FOR_CHARACTERS += LIMIT_VALUE_FOR_CHARACTERS.toInt();
-                    viewModel.getAllCharactersData(PAGINATED_VALUE_FOR_CHARACTERS)
-                    callCharactersApi()
-                }
-            }
-        })
-    }
-
-    private fun callCharactersApi() {
-        CoroutineScope(Dispatchers.Main).launch {
-            repeat(flagForCharacterList){
-                viewModel.marvelCharactersValue.collect{
-                    when{
-                        it.isLoading->{
-//                            _binding!!.pBarCharacters.visibility = View.VISIBLE
-                        }
-                        it.error.isNotBlank()->{
-//                            _binding!!.pBarCharacters.visibility = View.GONE
-                            flagForCharacterList = 0
-                            Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
-                        }
-                        it.list.isNotEmpty()->{
-                            //TODO: upon searching it is crashing because of this
-//                            _binding!!.pBarCharacters.visibility = View.GONE
-                            flagForCharacterList = 0
-                            characterAdapter.addData(it.list as ArrayList<Character>)
-                        }
-                    }
-                    delay(1000)
-                }
-
-            }
-        }
+        apiData.setupCharacterRecyclerView()
+        apiData.setupCreatorRecyclerView()
+        apiData.setupComicRecyclerView()
+        apiData.setupEventsRecyclerView()
+        apiData.setupSeriesRecyclerView()
     }
 
     private fun setupSliderView() {

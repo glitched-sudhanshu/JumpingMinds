@@ -63,7 +63,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                     _binding.fab2.visibility = View.GONE
                     _binding.fab3.visibility = View.GONE
                     isOpen = false
-                }else{
+                } else{
                     scaleIntroAnimation()
 //                    _binding.fabMain.setImageResource(R.drawable.ic_close)
                     _binding.fab1.visibility = View.VISIBLE
