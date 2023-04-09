@@ -47,8 +47,6 @@ class HomeFragment : Fragment() {
     private lateinit var characterAdapter: MarvelListAdapter<Character>
     private lateinit var creatorAdapter: MarvelListAdapter<Creator>
 
-
-    var paginatedValueForCreatorList = 0;
     private lateinit var rvCreator : RecyclerView
     private lateinit var layoutManagerForCreatorList: LinearLayoutManager
 
@@ -71,7 +69,6 @@ class HomeFragment : Fragment() {
         setupCharacterRecyclerView()
         setupCreatorRecyclerView()
     }
-
 
     private fun setupCreatorRecyclerView() {
         rvCreator = _binding!!.rvCreators

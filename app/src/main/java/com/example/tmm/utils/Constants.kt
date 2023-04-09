@@ -22,11 +22,11 @@ object Constants {
     }
 
 
-//    const val SEARCH_FOR_CHARACTERS = 100
-//    const val SEARCH_FOR_CREATORS = 101
-//    const val SEARCH_FOR_COMICS = 102
-//    const val SEARCH_FOR_EVENTS = 103
-//    const val SEARCH_FOR_SERIES = 104
+    const val SP_CHARACTERS = "100"
+    const val SP_CREATORS = "101"
+    const val SP_COMICS = "102"
+    const val SP_EVENTS = "103"
+    const val SP_SERIES = "104"
 
     var PAGINATED_VALUE_FOR_CHARACTERS = 0
     var PAGINATED_VALUE_FOR_CREATORS = 0
@@ -46,4 +46,6 @@ object Constants {
     const val SEARCH_FOR_COMICS = "Search comics by Title"
     const val SEARCH_FOR_EVENTS = "Search Events by Title"
     const val SEARCH_FOR_SERIES = "Search series by Title"
+
+    const val SHARED_PREF = "myPreferences"
 }

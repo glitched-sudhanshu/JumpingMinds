@@ -50,6 +50,7 @@ class MarvelListViewModel @Inject constructor(
                 is Response.Success -> {
                     _marvelCharactersValue.value =
                         CharacterListState(list = it.data ?: emptyList())
+                    Log.d(TAG, "getAllCharactersData: ${it.data?.size}")
                 }
                 is Response.Loading -> {
                     _marvelCharactersValue.value = CharacterListState(isLoading = true)

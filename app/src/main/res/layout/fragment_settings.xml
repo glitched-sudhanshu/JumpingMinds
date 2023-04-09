@@ -1,21 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <FrameLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".views.fragments.SettingsFragment">
+        android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/title_settings" />
+            android:layout_height="wrap_content">
 
-    </FrameLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCharacterLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:textColorHint="@color/offWhite"
+                app:boxStrokeErrorColor="@color/red_700"
+                app:counterOverflowTextColor="@color/red_700"
+                app:counterTextColor="@color/offWhite"
+                app:errorTextColor="@color/red_700"
+                app:helperText="Current limit : 15"
+                app:helperTextTextAppearance="@style/MyTextAppearance"
+                app:helperTextTextColor="@color/red_500"
+                app:hintTextColor="@color/offWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:errorEnabled="true"
+                app:boxStrokeColor="@color/til_box">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCharacterLimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Set limit to load Characters"
+                    android:inputType="number"
+                    android:textAppearance="@style/MyTextAppearance" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCreatorLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/offWhite"
+                app:boxStrokeErrorColor="@color/red_700"
+                app:counterOverflowTextColor="@color/red_700"
+                app:counterTextColor="@color/offWhite"
+                app:errorTextColor="@color/red_700"
+                app:helperText="Current limit : 15"
+                app:helperTextTextAppearance="@style/MyTextAppearance"
+                app:helperTextTextColor="@color/red_500"
+                app:hintTextColor="@color/offWhite"
+                app:layout_constraintTop_toBottomOf="@id/tilCharacterLimit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="24dp"
+                app:errorEnabled="true"
+                app:boxStrokeColor="@color/til_box">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCreatorLimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Set limit to load Creators"
+                    android:inputType="number"
+                    android:textAppearance="@style/MyTextAppearance" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilComicLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/offWhite"
+                app:boxStrokeErrorColor="@color/red_700"
+                app:counterOverflowTextColor="@color/red_700"
+                app:counterTextColor="@color/offWhite"
+                app:errorTextColor="@color/red_700"
+                app:helperText="Current limit : 15"
+                app:helperTextTextAppearance="@style/MyTextAppearance"
+                app:helperTextTextColor="@color/red_500"
+                app:hintTextColor="@color/offWhite"
+                app:layout_constraintTop_toBottomOf="@id/tilCreatorLimit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="24dp"
+                app:errorEnabled="true"
+                app:boxStrokeColor="@color/til_box">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etComicLimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Set limit to load Comics"
+                    android:inputType="number"
+                    android:textAppearance="@style/MyTextAppearance" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEventLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tilComicLimit"
+                android:textColorHint="@color/offWhite"
+                app:boxStrokeErrorColor="@color/red_700"
+                app:counterOverflowTextColor="@color/red_700"
+                app:counterTextColor="@color/offWhite"
+                app:errorTextColor="@color/red_700"
+                app:helperText="Current limit : 15"
+                app:helperTextTextAppearance="@style/MyTextAppearance"
+                app:helperTextTextColor="@color/red_500"
+                app:hintTextColor="@color/offWhite"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="24dp"
+                app:errorEnabled="true"
+                app:boxStrokeColor="@color/til_box">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEventLimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Set limit to load Events"
+                    android:inputType="number"
+                    android:textAppearance="@style/MyTextAppearance" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSeriesLimit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:textColorHint="@color/offWhite"
+                app:boxStrokeErrorColor="@color/red_700"
+                app:counterOverflowTextColor="@color/red_700"
+                app:counterTextColor="@color/offWhite"
+                app:errorEnabled="true"
+                app:errorTextColor="@color/red_700"
+                app:helperText="Current limit : 15"
+                app:helperTextTextAppearance="@style/MyTextAppearance"
+                app:helperTextTextColor="@color/red_500"
+                app:hintTextColor="@color/offWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilEventLimit"
+                app:boxStrokeColor="@color/til_box">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSeriesLimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="Set limit to load Series"
+                    android:inputType="number"
+                    android:textAppearance="@style/MyTextAppearance" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:text="Set limit between 1-100.\n\n* Set Limit between 15-30 for better performance."
+                android:textAlignment="viewEnd"
+                android:textAppearance="@style/MyTextAppearance"
+                android:textColor="@color/offWhite"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/tilSeriesLimit" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.4" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReset"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="16dp"
+                android:text="Reset to defaults"
+                android:textAppearance="@style/MyTextAppearance"
+                android:textColor="@color/red_500"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline5"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilSeriesLimit" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

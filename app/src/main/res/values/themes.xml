@@ -14,4 +14,21 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/bg_grey_layer</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="MyTextAppearance" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/architects_daughter</item>
+    </style>
+
+
+    <style name="MyTilTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="boxStrokeErrorColor">@color/red_700</item>
+        <item name="android:textColorHint">@color/offWhite</item>
+        <item name="helperTextTextColor">@color/red_500</item>
+        <item name="hintTextColor">@color/offWhite</item>
+        <item name="boxStrokeColor">@color/til_box</item>
+        <item name="errorTextColor">@color/red_700</item>
+        <item name="counterTextColor">@color/offWhite</item>
+        <item name="counterOverflowTextColor">@color/red_700</item>
+    </style>
+
 </resources>

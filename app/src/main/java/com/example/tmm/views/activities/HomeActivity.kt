@@ -1,5 +1,6 @@
 package com.example.tmm.views.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -10,6 +11,17 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.tmm.R
 import com.example.tmm.databinding.ActivityHomeBinding
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CHARACTERS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_COMICS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CREATORS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_EVENTS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_SERIES
+import com.example.tmm.utils.Constants.SHARED_PREF
+import com.example.tmm.utils.Constants.SP_CHARACTERS
+import com.example.tmm.utils.Constants.SP_COMICS
+import com.example.tmm.utils.Constants.SP_CREATORS
+import com.example.tmm.utils.Constants.SP_EVENTS
+import com.example.tmm.utils.Constants.SP_SERIES
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +40,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         setupNavController()
         _binding.fabMain.setOnClickListener(this)
     }
+
+
 
 
     private fun setupNavController()
