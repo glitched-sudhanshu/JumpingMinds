@@ -1,7 +1,9 @@
 package com.example.tmm.views.fragments
 
 //import com.example.tmm.R
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +18,10 @@ import com.example.tmm.domain.model.ListViewItem
 import com.example.tmm.domain.model.Character
 import com.example.tmm.domain.model.Creator
 import com.example.tmm.ui.viewmodels.MarvelListViewModel
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CHARACTERS
+import com.example.tmm.utils.Constants.LIMIT_VALUE_FOR_CREATORS
+import com.example.tmm.utils.Constants.PAGINATED_VALUE_FOR_CHARACTERS
+import com.example.tmm.utils.Constants.PAGINATED_VALUE_FOR_CREATORS
 import com.example.tmm.views.adapters.MarvelListAdapter
 import com.example.tmm.views.adapters.SliderAdapter
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
@@ -26,22 +32,21 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
-    var flagForCharacterList = 3
-    var paginatedValueForCharacterList = 0;
+    private var flagForCharacterList = 3
+    private var flagForCreatorList = 3
     private lateinit var rvCharacters : RecyclerView
     private lateinit var layoutManagerForCharacterList: LinearLayoutManager
 
     private lateinit var characterAdapter: MarvelListAdapter<Character>
     private lateinit var creatorAdapter: MarvelListAdapter<Creator>
 
-    var flagForCreatorList = 3
-    var paginatedValueForCreatorList = 0;
     private lateinit var rvCreator : RecyclerView
     private lateinit var layoutManagerForCreatorList: LinearLayoutManager
 
@@ -63,9 +68,7 @@ class HomeFragment : Fragment() {
         setupSliderView()
         setupCharacterRecyclerView()
         setupCreatorRecyclerView()
-        viewModel.getAllSeriesData(0)
     }
-
 
     private fun setupCreatorRecyclerView() {
         rvCreator = _binding!!.rvCreators
@@ -73,14 +76,14 @@ class HomeFragment : Fragment() {
         creatorAdapter = MarvelListAdapter(context = requireContext(), itemList =  ArrayList(), isSearch = false)
         rvCreator.layoutManager = layoutManagerForCreatorList
         rvCreator.adapter = creatorAdapter
-        viewModel.getAllCreatorsData(paginatedValueForCreatorList)
+        viewModel.getAllCreatorsData(PAGINATED_VALUE_FOR_CREATORS)
         callCreatorApi()
         rvCreator.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if(layoutManagerForCreatorList.findLastVisibleItemPosition() == layoutManagerForCreatorList.itemCount-1){
-                    paginatedValueForCreatorList += 20;
-                    viewModel.getAllCreatorsData(paginatedValueForCreatorList)
+                    PAGINATED_VALUE_FOR_CREATORS += LIMIT_VALUE_FOR_CREATORS.toInt();
+                    viewModel.getAllCreatorsData(PAGINATED_VALUE_FOR_CREATORS)
                     callCreatorApi()
                 }
             }
@@ -119,14 +122,14 @@ class HomeFragment : Fragment() {
         characterAdapter = MarvelListAdapter(requireContext(), ArrayList(), false)
         rvCharacters.layoutManager = layoutManagerForCharacterList
         rvCharacters.adapter = characterAdapter
-        viewModel.getAllCharactersData(paginatedValueForCharacterList)
+        viewModel.getAllCharactersData(PAGINATED_VALUE_FOR_CHARACTERS)
         callCharactersApi()
         rvCharacters.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if(layoutManagerForCharacterList.findLastVisibleItemPosition() == layoutManagerForCharacterList.itemCount-1){
-                    paginatedValueForCharacterList += 20;
-                    viewModel.getAllCharactersData(paginatedValueForCharacterList)
+                    PAGINATED_VALUE_FOR_CHARACTERS += LIMIT_VALUE_FOR_CHARACTERS.toInt();
+                    viewModel.getAllCharactersData(PAGINATED_VALUE_FOR_CHARACTERS)
                     callCharactersApi()
                 }
             }

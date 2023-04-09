@@ -2,6 +2,7 @@ package com.example.tmm.ui.viewmodels
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tmm.domain.use_cases.*
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class MarvelListViewModel @Inject constructor(
@@ -48,6 +50,7 @@ class MarvelListViewModel @Inject constructor(
                 is Response.Success -> {
                     _marvelCharactersValue.value =
                         CharacterListState(list = it.data ?: emptyList())
+                    Log.d(TAG, "getAllCharactersData: ${it.data?.size}")
                 }
                 is Response.Loading -> {
                     _marvelCharactersValue.value = CharacterListState(isLoading = true)
@@ -134,7 +137,8 @@ class MarvelListViewModel @Inject constructor(
         comicUseCase(offset = offset).collect {
             when (it) {
                 is Response.Success -> {
-                    _marvelComicValue.value = ComicListState(list = it.data ?: emptyList())
+                    _marvelComicValue.value = ComicListState(list = it.data?: emptyList())
+                    Log.d(TAG, "getAllDataComics: ${it.data?.size}")
                 }
                 is Response.Loading -> {
                     _marvelComicValue.value = ComicListState(isLoading = true)
@@ -152,6 +156,7 @@ class MarvelListViewModel @Inject constructor(
             when (it) {
                 is Response.Success -> {
                     _marvelEventValue.value = EventListState(list = it.data ?: emptyList())
+                    Log.d(TAG, "getAllDataEvents: ${it.data?.size}")
                 }
                 is Response.Loading -> {
                     _marvelEventValue.value = EventListState(isLoading = true)
@@ -186,10 +191,7 @@ class MarvelListViewModel @Inject constructor(
             when (it) {
                 is Response.Success -> {
                     _marvelSeriesValue.value = SeriesListState(list = it.data ?: emptyList())
-                    for (item in it.data!!) {
-                        Log.d(TAG,
-                            "getAllData: ${item.title}->${item.noOfCharacters} & ${item.description}")
-                    }
+                    Log.d(TAG, "getAllDataSeries: ${it.data?.size}")
                 }
                 is Response.Loading -> {
                     _marvelSeriesValue.value = SeriesListState(isLoading = true)
