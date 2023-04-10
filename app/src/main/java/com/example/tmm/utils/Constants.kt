@@ -48,4 +48,7 @@ object Constants {
     const val SEARCH_FOR_SERIES = "Search series by Title"
 
     const val SHARED_PREF = "myPreferences"
+
+    const val CHARACTER_TABLE_NAME = "Charactertablename"
+    const val DATABASE_NAME = "MarvelDb"
 }
