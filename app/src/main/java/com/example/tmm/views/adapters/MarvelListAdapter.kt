@@ -99,7 +99,7 @@ class MarvelListAdapter<T>(
                     is Creator -> HomeFragmentDirections.actionNavigationHomeToDetailedItemFragmentCreator(item)
                     is Character -> HomeFragmentDirections.actionNavigationHomeToDetailedItemFragmentCharacter(item)
                     is MarvelComic -> HomeFragmentDirections.actionNavigationHomeToDetailedItemFragmentComic(item)
-                    is MarvelSeries -> HomeFragmentDirections.actionNavigationHomeToDetailedItemFragmentSeries(item)
+                    is MarvelEvent -> HomeFragmentDirections.actionNavigationHomeToDetailedItemFragmentEvent(item)
                     else -> HomeFragmentDirections.actionNavigationHomeToDetailedItemFragmentSeries(item as MarvelSeries)
                 }
                 navController?.navigate(action)
