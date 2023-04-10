@@ -156,10 +156,55 @@
             app:popUpTo="@id/navigation_home"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_allItemsFragment_to_detailedItemFragment"
+            android:id="@+id/action_allItemsFragment_to_detailedItemFragment_character"
             app:destination="@id/detailedItemFragment"
             app:popUpTo="@id/detailedItemFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true" >
+            <argument
+                android:name="item"
+                app:argType="com.example.tmm.domain.model.Character" />
+
+        </action>
+        <action
+            android:id="@+id/action_allItemsFragment_to_detailedItemFragment_creator"
+            app:destination="@id/detailedItemFragment"
+            app:popUpTo="@id/detailedItemFragment"
+            app:popUpToInclusive="true" >
+            <argument
+                android:name="item"
+                app:argType="com.example.tmm.domain.model.Creator" />
+
+        </action>
+        <action
+            android:id="@+id/action_allItemsFragment_to_detailedItemFragment_comic"
+            app:destination="@id/detailedItemFragment"
+            app:popUpTo="@id/detailedItemFragment"
+            app:popUpToInclusive="true" >
+            <argument
+                android:name="item"
+                app:argType="com.example.tmm.domain.model.MarvelComic" />
+
+        </action>
+        <action
+            android:id="@+id/action_allItemsFragment_to_detailedItemFragment_series"
+            app:destination="@id/detailedItemFragment"
+            app:popUpTo="@id/detailedItemFragment"
+            app:popUpToInclusive="true" >
+            <argument
+                android:name="item"
+                app:argType="com.example.tmm.domain.model.MarvelSeries" />
+
+        </action>
+        <action
+            android:id="@+id/action_allItemsFragment_to_detailedItemFragment_event"
+            app:destination="@id/detailedItemFragment"
+            app:popUpTo="@id/detailedItemFragment"
+            app:popUpToInclusive="true" >
+            <argument
+                android:name="item"
+                app:argType="com.example.tmm.domain.model.MarvelEvent" />
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/detailedItemFragment"
