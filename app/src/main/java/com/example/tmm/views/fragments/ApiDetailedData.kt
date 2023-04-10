@@ -17,26 +17,24 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class ApiData(
+class ApiDetailedData(
     private val viewModel: MarvelListViewModel,
     private val context: Context,
     private val recyclerViews: Array<RecyclerView>,
     private val isSearch: Array<Boolean>,
-    private val fragment: Fragment,
+    private val fragment: Fragment
 ) {
-
     private var flagForCharacterList = 3
     private var flagForCreatorList = 3
     private var flagForComicList = 3
     private var flagForEventList = 3
     private var flagForSeriesList = 3
 
-
-    private lateinit var layoutManagerForCharacterList: LinearLayoutManager
-    private lateinit var layoutManagerForCreatorList: LinearLayoutManager
-    private lateinit var layoutManagerForComicList: LinearLayoutManager
-    private lateinit var layoutManagerForEventsList: LinearLayoutManager
-    private lateinit var layoutManagerForSeriesList: LinearLayoutManager
+    private lateinit var layoutManagerForCharacterList: GridLayoutManager
+    private lateinit var layoutManagerForCreatorList: GridLayoutManager
+    private lateinit var layoutManagerForComicList: GridLayoutManager
+    private lateinit var layoutManagerForEventsList: GridLayoutManager
+    private lateinit var layoutManagerForSeriesList: GridLayoutManager
 
     private lateinit var characterAdapter: MarvelListAdapter<Character>
     private lateinit var creatorAdapter: MarvelListAdapter<Creator>
@@ -52,7 +50,7 @@ class ApiData(
     private val rvSeries = recyclerViews[4]
 
     fun setupCharacterRecyclerView() {
-        layoutManagerForCharacterList = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        layoutManagerForCharacterList = GridLayoutManager(context, 2)
         characterAdapter = MarvelListAdapter(context, ArrayList(), isSearch = isSearch[0], fragment)
         rvCharacters.layoutManager = layoutManagerForCharacterList
         rvCharacters.adapter = characterAdapter
@@ -99,7 +97,7 @@ class ApiData(
 
     fun setupCreatorRecyclerView() {
         layoutManagerForCreatorList =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            GridLayoutManager(context, 2)
         creatorAdapter =
             MarvelListAdapter(context = context, itemList = ArrayList(), isSearch = isSearch[1], fragment)
         rvCreator.layoutManager = layoutManagerForCreatorList
@@ -147,7 +145,7 @@ class ApiData(
 
     fun setupComicRecyclerView() {
         layoutManagerForComicList =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            GridLayoutManager(context, 2)
         comicAdapter = MarvelListAdapter(context, ArrayList(), isSearch[2], fragment)
         rvComics.layoutManager = layoutManagerForComicList
         rvComics.adapter = comicAdapter
@@ -195,7 +193,7 @@ class ApiData(
 
     fun setupEventsRecyclerView() {
         layoutManagerForEventsList =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            GridLayoutManager(context, 2)
         eventsAdapter = MarvelListAdapter(context, ArrayList(), isSearch[3], fragment)
         rvEvents.layoutManager = layoutManagerForEventsList
         rvEvents.adapter = eventsAdapter
@@ -242,7 +240,7 @@ class ApiData(
 
     fun setupSeriesRecyclerView() {
         layoutManagerForSeriesList =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            GridLayoutManager(context, 2)
         seriesAdapter = MarvelListAdapter(context, ArrayList(), isSearch[4], fragment)
         rvSeries.layoutManager = layoutManagerForSeriesList
         rvSeries.adapter = seriesAdapter

@@ -6,6 +6,8 @@
         <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/bnv_tab_item.xml" value="0.1" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/container_bg.xml" value="0.1" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/fab_bg.xml" value="0.2365" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/ic_favorite.xml" value="0.233" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/ic_favorite_border.xml" value="0.233" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/ic_reset.xml" value="0.2595" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/rv_item_ripple.xml" value="0.219" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/drawable/search_view_bg.xml" value="0.1095" />
@@ -13,11 +15,14 @@
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/activity_home.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/activity_splash.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/carousel_item.xml" value="0.1" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_all_items.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_character.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_comic.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_creator.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_dashboard.xml" value="0.20854700854700856" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_detailed_item.xml" value="0.15" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_event.xml" value="0.20854700854700856" />
+        <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_favourites.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_home.xml" value="0.20854700854700856" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
         <entry key="..\:/App_Dev/TMM/app/src/main/res/layout/fragment_search.xml" value="0.20854700854700856" />

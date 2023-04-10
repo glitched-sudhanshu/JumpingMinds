@@ -174,7 +174,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         _binding!!.rvSearchResult.visibility = View.VISIBLE
         rvSearchResult = _binding!!.rvSearchResult
         adapterSeriesSearchResult =
-            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true, this)
         rvSearchResult.layoutManager = layoutManager
         rvSearchResult.adapter = adapterSeriesSearchResult
         viewModel.getAllSearchedSeries(searchTerm)
@@ -201,7 +201,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchForEvents() {
         _binding!!.rvSearchResult.visibility = View.VISIBLE
         rvSearchResult = _binding!!.rvSearchResult
-        adapterEventSearchResult = MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+        adapterEventSearchResult = MarvelListAdapter(requireContext(), ArrayList(), isSearch = true ,this)
         rvSearchResult.layoutManager = layoutManager
         rvSearchResult.adapter = adapterEventSearchResult
         viewModel.getAllSearchedEvents(searchTerm)
@@ -229,7 +229,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         _binding!!.rvSearchResult.visibility = View.VISIBLE
         rvSearchResult = _binding!!.rvSearchResult
         adapterCreatorSearchResult =
-            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true, this)
         rvSearchResult.layoutManager = layoutManager
         rvSearchResult.adapter = adapterCreatorSearchResult
         viewModel.getAllSearchedCreatorsData(searchTerm)
@@ -256,7 +256,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchForComics() {
         _binding!!.rvSearchResult.visibility = View.VISIBLE
         rvSearchResult = _binding!!.rvSearchResult
-        adapterComicSearchResult = MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+        adapterComicSearchResult = MarvelListAdapter(requireContext(), ArrayList(), isSearch = true,this)
         rvSearchResult.layoutManager = layoutManager
         rvSearchResult.adapter = adapterComicSearchResult
         viewModel.getAllSearchedComics(searchTerm)
@@ -284,7 +284,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         _binding!!.rvSearchResult.visibility = View.VISIBLE
         rvSearchResult = _binding!!.rvSearchResult
         adapterCharacterSearchResult =
-            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true)
+            MarvelListAdapter(requireContext(), ArrayList(), isSearch = true, this)
         rvSearchResult.layoutManager = layoutManager
         rvSearchResult.adapter = adapterCharacterSearchResult
         viewModel.getAllSearchedCharacters(searchTerm)
