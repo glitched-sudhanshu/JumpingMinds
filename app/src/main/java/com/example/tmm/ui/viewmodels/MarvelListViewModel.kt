@@ -2,9 +2,9 @@ package com.example.tmm.ui.viewmodels
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.example.tmm.data.data_source.database.CharacterDao
+import com.example.tmm.domain.model.Character
 import com.example.tmm.domain.use_cases.*
 import com.example.tmm.ui.viewmodels.ListState.*
 import com.example.tmm.utils.Response
@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class MarvelListViewModel @Inject constructor(
@@ -137,7 +136,7 @@ class MarvelListViewModel @Inject constructor(
         comicUseCase(offset = offset).collect {
             when (it) {
                 is Response.Success -> {
-                    _marvelComicValue.value = ComicListState(list = it.data?: emptyList())
+                    _marvelComicValue.value = ComicListState(list = it.data ?: emptyList())
                     Log.d(TAG, "getAllDataComics: ${it.data?.size}")
                 }
                 is Response.Loading -> {
@@ -223,5 +222,38 @@ class MarvelListViewModel @Inject constructor(
                 }
             }
         }
+    }
+}
+
+class MarvelRoomViewModel(
+    private val characterDao: CharacterDao,
+) : ViewModel() {
+    private val _characterLikedValue = MutableStateFlow<List<Character>>(emptyList())
+    var characterLikedValue: StateFlow<List<Character>> = _characterLikedValue
+
+
+    val allCharacters : LiveData<List<Character>> = characterDao.getAllCharacters().asLiveData()
+
+    fun insert(character: Character) = viewModelScope.launch{
+        characterDao.insertCharacter(character)
+    }
+
+    fun delete(character: Character) = viewModelScope.launch {
+        characterDao.deleteCharacter(character)
+    }
+
+    fun getCharacter(id : Int) = viewModelScope.launch {
+        characterDao.getCharacter(id)
+    }
+
+//    fun get
+
+}
+class MarvelRoomViewModelFactory(private val dao: CharacterDao) : ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(MarvelRoomViewModel::class.java)){
+            return MarvelRoomViewModel(dao) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel Class")
     }
 }

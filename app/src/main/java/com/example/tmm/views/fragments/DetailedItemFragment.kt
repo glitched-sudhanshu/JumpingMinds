@@ -5,15 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.tmm.R
+import com.example.tmm.data.data_source.database.MarvelDatabase
 import com.example.tmm.databinding.FragmentDetailedItemBinding
 import com.example.tmm.domain.model.*
+import com.example.tmm.ui.viewmodels.MarvelListViewModel
+import com.example.tmm.ui.viewmodels.MarvelRoomViewModel
+import com.example.tmm.ui.viewmodels.MarvelRoomViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailedItemFragment : Fragment() {
 
     private var _binding: FragmentDetailedItemBinding? = null
+    private lateinit var viewModel : MarvelRoomViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +35,11 @@ class DetailedItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val dao = MarvelDatabase.getDatabase(requireContext()).characterDao()
+        val factory = MarvelRoomViewModelFactory(dao)
+        viewModel = ViewModelProvider(this, factory)[MarvelRoomViewModel::class.java]
+
         val itemType = arguments?.get("item")
 
         when (itemType) {
@@ -43,7 +57,10 @@ class DetailedItemFragment : Fragment() {
                 if(descText.isEmpty())descText = "N/A"
                 _binding!!.txtDesc.text = "Description:\n${descText}"
                 _binding!!.txtNoOfComics.visibility = View.VISIBLE
-                _binding!!.txtNoOfComics.text = "No. of Comics : ${itemType.comics.size}"
+                _binding!!.txtNoOfComics.text = "No. of Comics : ${itemType.noOfComics}"
+
+                _binding!!.imgFav.visibility = View.VISIBLE
+                viewModel.insert(itemType)
             }
             is Creator -> {
                 val imageUrl = "${

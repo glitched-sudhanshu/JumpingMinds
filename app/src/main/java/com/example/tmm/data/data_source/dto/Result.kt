@@ -22,10 +22,8 @@ data class Result(
             description = description,
             thumbnail = thumbnail.path,
             thumbnailExt =  thumbnail.extension,
-            comics =  comics.items.map{
-                it.name
-            }
-
+            noOfComics =  comics.items.size,
+            isLiked = false
         )
     }
 }
